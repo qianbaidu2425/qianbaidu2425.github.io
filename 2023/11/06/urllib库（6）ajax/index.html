@@ -3,7 +3,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="utf-8" />
-    <title>用递归模拟混沌现象 | 千百度&#39;s space</title>
+    <title>urllib库（6）ajax | 千百度&#39;s space</title>
     <meta name="author" content="千百度" />
     <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
     <meta name="keywords" content="" />
@@ -150,61 +150,62 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>用递归模拟混沌现象</h1>
+        <h1>urllib库（6）ajax</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/11/5
+            2023/11/6
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><img src="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/b0d450e51c92beab5c2339837c3f799.png" alt="Alt text"></p>
-<h3 id="代码实现（python）"><a href="#代码实现（python）" class="headerlink" title="代码实现（python）"></a>代码实现（python）</h3><pre><code class="highlight python"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):
-<span class="comment">#这个程序的作用是研究X(n+1)=1-kX(n)^2这个方程实现的混沌现象</span>
-<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
-x = []
-y = []
-<span class="comment"># 先创建一个空的散点图</span>
-plt.scatter(x, y)
-<span class="comment"># 给散点图添加标题，并给坐标轴命名</span>
-plt.title(<span class="string">&#x27;x-k&#x27;</span>)
-plt.xlabel(<span class="string">&#x27;k&#x27;</span>)
-plt.ylabel(<span class="string">&#x27;x&#x27;</span>)
-<span class="comment">#设置基础参数</span>
-step = <span class="number">0.01</span>
-x = <span class="number">5</span>
-k = <span class="number">0</span>
-<span class="comment">#k从0递增到2，步长为0.01</span>
-<span class="keyword">while</span> k&lt;=<span class="number">2</span>:
-    <span class="comment">#先把k的位数定为2位</span>
-    k = <span class="built_in">round</span>(k,<span class="number">2</span>)
-    <span class="comment">#先迭代500次，得到方程迭代500次后x的数值</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">501</span>):
-        x = <span class="number">1</span> - k * x * x
-    <span class="comment">#接下来再迭代100次，并把每次得到的x，用(k,x)坐标的形式画在散点图中</span>
-    <span class="comment">#如果是单倍周期，那么x在这100次迭代的过程中会稳定在某一个值，否则会在几个值之间跳动</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">101</span>):
-        x = <span class="number">1</span> - k * x * x
-        plt.scatter(k,x,color = <span class="string">&#x27;black&#x27;</span>,s = <span class="number">10</span>)
-        <span class="built_in">print</span>(k)
-    k = k + step
-<span class="comment">#接下来实现鼠标点击读取坐标功能：</span>
-<span class="keyword">def</span> <span class="title function_">onclick</span>(<span class="params">event</span>):
-    <span class="keyword">if</span> event.xdata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> event.ydata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:
-        <span class="built_in">print</span>(<span class="string">f&quot;点击坐标：(<span class="subst">&#123;event.xdata&#125;</span>, <span class="subst">&#123;event.ydata&#125;</span>)&quot;</span>)
-cid = plt.gcf().canvas.mpl_connect(<span class="string">&#x27;button_press_event&#x27;</span>, onclick)
-<span class="comment">#把画好的散点图表示出来</span>
-plt.show()</code></pre>
+        <h3 id="什么是ajax？"><a href="#什么是ajax？" class="headerlink" title="什么是ajax？"></a>什么是ajax？</h3><p>含有多个多个页面时，常有ajax请求，ajax请求也分为ajax的post请求和ajax的get请求</p>
+<h3 id="如何判断运用了ajax请求？"><a href="#如何判断运用了ajax请求？" class="headerlink" title="如何判断运用了ajax请求？"></a>如何判断运用了ajax请求？</h3><p>当headers中出现：X-Requested-With: XMLHttpRequest时，说明就是一个ajax请求</p>
+<p>代码示例：获得豆瓣电影前20页的数据</p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> urllib.parse
+url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+
+<span class="keyword">def</span> <span class="title function_">create_request</span>(<span class="params">page</span>):
+    base_url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+    data = &#123;
+        <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;上海&#x27;</span>,
+        <span class="string">&#x27;pid&#x27;</span>:<span class="string">&#x27;&#x27;</span>,
+        <span class="string">&#x27;pageIndex&#x27;</span>: page,
+        <span class="string">&#x27;pageSize&#x27;</span>: <span class="number">10</span>
+    &#125;
+    headers = &#123;
+        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
+        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>,
+        <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;ll=&quot;108296&quot;; bid=DIZJHJYe40Y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1697503350%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D7mX7_DYj1rvpVbk1-XVpnHlGWhhuOHcRgjFNbC0KoWEMe4-wytQfL4FZvJtRsTxC%26wd%3D%26eqid%3De80b52bb0000c24600000005652dd873%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __yadk_uid=cSeoVvLDVBPux8QedPv8ZhjqjQMyW7Ka; _vwo_uuid_v2=D0271D0AFA2BFE022D7B32A84C9C79BA9|9f33d547e5bc95d46eac63303551a3cb; _pk_id.100001.4cf6=3c8e0eace73a58d7.1697503374.; Hm_lvt_16a14f3002af32bf3a75dfe352478639=1697503401; Hm_lpvt_16a14f3002af32bf3a75dfe352478639=1697503401; __utma=30149280.267631944.1656475391.1656491114.1697503809.3; __utmb=30149280.0.10.1697503809; __utmc=30149280; __utmz=30149280.1697503809.3.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=223695111.902583869.1656491114.1656491114.1697503809.2; __utmb=223695111.0.10.1697503809; __utmc=223695111; __utmz=223695111.1697503809.2.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#x27;</span>
+    &#125;
+
+    data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf-8&#x27;</span>)
+    request = urllib.request.Request(url=base_url,data=data,headers=headers)
+    <span class="keyword">return</span> request
+
+<span class="keyword">def</span> <span class="title function_">get_content</span>(<span class="params">request</span>):
+    response = urllib.request.urlopen(request)
+    content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+    <span class="keyword">return</span> content
 
 
-
-
+<span class="keyword">def</span> <span class="title function_">download</span>(<span class="params">content,page</span>):
+    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;kfc&#x27;</span>+<span class="built_in">str</span>(page)+<span class="string">&#x27;.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file_object:
+        file_object.write(content)
+<span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:
+    start_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入起始页码： &#x27;</span>))
+    end_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入终止页码: &#x27;</span>))
+    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(start_page,end_page+<span class="number">1</span>):
+        request = create_request(page)
+        content = get_content(request)
+        download(content,page)
+</code></pre>
     </div>
     
     

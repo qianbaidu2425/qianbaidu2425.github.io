@@ -3,7 +3,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="utf-8" />
-    <title>用递归模拟混沌现象 | 千百度&#39;s space</title>
+    <title>千百度&#39;s space</title>
     <meta name="author" content="千百度" />
     <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
     <meta name="keywords" content="" />
@@ -36,9 +36,7 @@
 
 
 
-
-
-
+<script src="/js/lib/home.js"></script>
 
 <link rel="stylesheet" href="/css/main.css" />
 
@@ -148,11 +146,197 @@
 </transition>
 
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
-            <div class="article">
-    <div>
-        <h1>用递归模拟混沌现象</h1>
+            <div id="home-head">
+    <div id="home-background" ref="homeBackground" data-images="/images/background.jpg"></div>
+    <div id="home-info" @click="homeClick">
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="loop"></span>
+        <span class="info">
+            <div class="wrap">
+                <h1>千百度&#39;s space</h1>
+                <h3>——a tree hole for nichijou</h3>
+                <h5>我们所度过的每一个日常，或许就是连续不断发生的奇迹</h5>
+            </div>
+        </span>
     </div>
-    <div class="info">
+</div>
+<div id="home-posts-wrap" true ref="homePostsWrap">
+    <div id="home-posts">
+        
+
+<div class="post">
+    <a href="/2023/11/06/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+        <h2 class="post-title">序列化和反序列化</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>把列表、字典等类型的对象转换为字符串类型之后才可以写进txt文件中</p>
+<p>有dumps和dump两种用法：</p>
+<pre><code class="highlight python"><span class="keyword">import</span> json
+<span class="comment">#dumps</span>
+<span class="string">&quot;&quot;&quot;</span>
+<span class="string">with open(&#x27;example.txt&#x27;,&#x27;w&#x27;) as object:</span>
+<span class="string">    a = [&#x27;yes&#x27;, &#x27;no&#x27;]</span>
+<span class="string">    b = json.dumps(a)</span>
+<span class="string">    #此时b的类型是str</span>
+<span class="string">    object.write(b)</span>
+<span class="string">&quot;&quot;&quot;</span>
+<span class="comment">#dump</span>
+<span class="comment">#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里</span>
+
+<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;example.txt&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> <span class="built_in">object</span>:
+    a = [<span class="string">&#x27;yes&#x27;</span>, <span class="string">&#x27;no&#x27;</span>,<span class="string">&#x27;yes&#x27;</span>]
+    json.dump(a, <span class="built_in">object</span>)
+    <span class="built_in">print</span>(<span class="built_in">object</span>)
+
+</code></pre>
+
+<h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><p>把txt文件中的str字符串还原成python中的各类对象</p>
+<p>有load和loads两种用法</p>
+<pre><code class="highlight python"><span class="keyword">import</span> json
+<span class="comment">#dumps</span>
+<span class="string">&quot;&quot;&quot;</span>
+<span class="string">with open(&#x27;example.txt&#x27;,&#x27;w&#x27;) as object:</span>
+<span class="string">    a = [&#x27;yes&#x27;, &#x27;no&#x27;]</span>
+<span class="string">    b = json.dumps(a)</span>
+<span class="string">    #此时b的类型是str</span>
+<span class="string">    object.write(b)</span>
+<span class="string">&quot;&quot;&quot;</span>
+<span class="comment">#dump</span>
+<span class="comment">#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里</span>
+
+<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;example.txt&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> <span class="built_in">object</span>:
+    a = [<span class="string">&#x27;yes&#x27;</span>, <span class="string">&#x27;no&#x27;</span>,<span class="string">&#x27;yes&#x27;</span>]
+    json.dump(a, <span class="built_in">object</span>)
+    <span class="built_in">print</span>(<span class="built_in">object</span>)
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
+        <h2 class="post-title">页面的基本结构</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="一些基本的名词"><a href="#一些基本的名词" class="headerlink" title="一些基本的名词"></a>一些基本的名词</h3><p>table:表格<br>tr：行<br>td:列<br>px:pixel<br>ol,li:用来设置有序列表<br>ul,li:用来设置无序列表  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--
+table:表格
+tr：行
+td:列
+px:pixel
+-->
+<table width="200px" height="200px" border="2px">
+    <tr>
+        <td>
+            name
+        </td>
+        <td>
+            age
+        </td>
+        <td>
+            gender
+        </td>
+    </tr>
+    <tr>
+        <td>
+            qianbaidu
+        </td>
+        <td>
+            18
+        </td>
+        <td>
+            male
+        </td>
+    </tr>
+</table>
+
+<!--ul,li:用来设置无序列表-->
+<ul>
+    <li>
+        xiamen no.1 high school
+    </li>
+    <li>
+        double ten middle school
+    </li>
+</ul>
+
+<!--ol,li:用来设置有序列表-->
+<ol>
+    <li>
+        get up
+    </li>
+    <li>
+        have breakfast
+    </li>
+    <li>
+        go to the library
+    </li>
+</ol>
+
+<!--超链接-->
+<p><a target="_blank" rel="noopener" href="https://shuiyuan.sjtu.edu.cn/">水源</a></p>
+</body>
+</html>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/">
+        <h2 class="post-title">用递归模拟混沌现象</h2>
+    </a>
+    <div class="category-and-date">
+        
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
@@ -162,9 +346,10 @@
         
         
     </div>
-    
-    <div class="content" v-pre>
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><img src="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/b0d450e51c92beab5c2339837c3f799.png" alt="Alt text"></p>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><img src="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/b0d450e51c92beab5c2339837c3f799.png" alt="Alt text"></p>
 <h3 id="代码实现（python）"><a href="#代码实现（python）" class="headerlink" title="代码实现（python）"></a>代码实现（python）</h3><pre><code class="highlight python"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):
 <span class="comment">#这个程序的作用是研究X(n+1)=1-kX(n)^2这个方程实现的混沌现象</span>
 <span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
@@ -205,13 +390,60 @@ plt.show()</code></pre>
 
 
 
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/" class="go-post">阅读全文</a>
+</div>
+
+
+        <div class="page-current">
+    
+    <a class="page-num" href="/">
+        <i class="fa-solid fa-caret-left fa-fw"></i>
+    </a>
+    <a class="page-num" href="/">1</a>
+    <span class="page-omit">...</span>
+    
+    <span class="current">2</span>
+    
+    
+    
+    
+</div>
+
     </div>
     
-    
-    
-    
-    
-    
+    <div id="home-card">
+        <div id="card-style">
+    <div id="card-div">
+        <div class="avatar">
+            <img src="/images/avatar.jpg" alt="avatar" />
+        </div>
+        <div class="name">千百度</div>
+        <div class="description">
+            <p>我的灵魂还能吟歌</p>
+
+        </div>
+        
+        
+        <div class="friend-links">
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://github.com/qianbaidu2425">qianbaidu_github</a>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+    </div>
     
 </div>
 
@@ -243,12 +475,6 @@ plt.show()</code></pre>
         
     </div>
     <script src="/js/main.js"></script>
-    
-    
-
-
-
-
     
 </body>
 </html>

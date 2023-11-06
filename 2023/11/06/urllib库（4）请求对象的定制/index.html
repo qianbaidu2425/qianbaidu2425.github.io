@@ -3,7 +3,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="utf-8" />
-    <title>用递归模拟混沌现象 | 千百度&#39;s space</title>
+    <title>urllib库（4）请求对象的定制 | 千百度&#39;s space</title>
     <meta name="author" content="千百度" />
     <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
     <meta name="keywords" content="" />
@@ -150,61 +150,42 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>用递归模拟混沌现象</h1>
+        <h1>urllib库（4）请求对象的定制</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/11/5
+            2023/11/6
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><img src="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/b0d450e51c92beab5c2339837c3f799.png" alt="Alt text"></p>
-<h3 id="代码实现（python）"><a href="#代码实现（python）" class="headerlink" title="代码实现（python）"></a>代码实现（python）</h3><pre><code class="highlight python"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):
-<span class="comment">#这个程序的作用是研究X(n+1)=1-kX(n)^2这个方程实现的混沌现象</span>
-<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
-x = []
-y = []
-<span class="comment"># 先创建一个空的散点图</span>
-plt.scatter(x, y)
-<span class="comment"># 给散点图添加标题，并给坐标轴命名</span>
-plt.title(<span class="string">&#x27;x-k&#x27;</span>)
-plt.xlabel(<span class="string">&#x27;k&#x27;</span>)
-plt.ylabel(<span class="string">&#x27;x&#x27;</span>)
-<span class="comment">#设置基础参数</span>
-step = <span class="number">0.01</span>
-x = <span class="number">5</span>
-k = <span class="number">0</span>
-<span class="comment">#k从0递增到2，步长为0.01</span>
-<span class="keyword">while</span> k&lt;=<span class="number">2</span>:
-    <span class="comment">#先把k的位数定为2位</span>
-    k = <span class="built_in">round</span>(k,<span class="number">2</span>)
-    <span class="comment">#先迭代500次，得到方程迭代500次后x的数值</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">501</span>):
-        x = <span class="number">1</span> - k * x * x
-    <span class="comment">#接下来再迭代100次，并把每次得到的x，用(k,x)坐标的形式画在散点图中</span>
-    <span class="comment">#如果是单倍周期，那么x在这100次迭代的过程中会稳定在某一个值，否则会在几个值之间跳动</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">101</span>):
-        x = <span class="number">1</span> - k * x * x
-        plt.scatter(k,x,color = <span class="string">&#x27;black&#x27;</span>,s = <span class="number">10</span>)
-        <span class="built_in">print</span>(k)
-    k = k + step
-<span class="comment">#接下来实现鼠标点击读取坐标功能：</span>
-<span class="keyword">def</span> <span class="title function_">onclick</span>(<span class="params">event</span>):
-    <span class="keyword">if</span> event.xdata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> event.ydata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:
-        <span class="built_in">print</span>(<span class="string">f&quot;点击坐标：(<span class="subst">&#123;event.xdata&#125;</span>, <span class="subst">&#123;event.ydata&#125;</span>)&quot;</span>)
-cid = plt.gcf().canvas.mpl_connect(<span class="string">&#x27;button_press_event&#x27;</span>, onclick)
-<span class="comment">#把画好的散点图表示出来</span>
-plt.show()</code></pre>
+        <h3 id="一个url的组成"><a href="#一个url的组成" class="headerlink" title="一个url的组成"></a>一个url的组成</h3><p><code>示例：https://www.baidu.com/s?wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&amp;sex=%E7%94%B7&amp;location=%E4%B8%AD%E5%9B%BD%E5%8F%B0%E6%B9%BE%E7%9C%81 </code><br>1、协议：http&#x2F;https<br>2、主机：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>3、端口号：<br>http：80<br>https：443<br>mysql：3306<br>oracle:1521<br>redis:6379<br>mongodb:27107<br>4、路径：s<br>5、参数：问号之后的数据<br>6、锚点</p>
+<h3 id="http和https协议的区别"><a href="#http和https协议的区别" class="headerlink" title="http和https协议的区别"></a>http和https协议的区别</h3><p>https经过加密，如果直接用urlopen函数打开使用https协议的url，那么获取到的数据就是不完整的</p>
+<h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p>User-Agent:一个反爬虫，放在一个名为headers的字典中</p>
+<p>headers包含了很多参数，例如Accept,Cookie等，但是最重要的参数还是Cookie!</p>
+<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>函数urlopen的传参URL可以是一个字符串表示的url，也可以是一个request类型的对象  </p>
+<p>把url和headers传入，获得一个request类型的对象，然后再传入urlopen函数中去获得响应   </p>
+<p><strong>特别注意：这里定制request对象必须用关键字传参！因为url和headers中间还有一个data传参，因此不能使用顺序传参！</strong></p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+url = <span class="string">&quot;https://www.baidu.com&quot;</span>
 
 
+headers = &#123;
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36&#x27;</span>
+&#125;
 
 
+request = urllib.request.Request(url = url,headers = headers)
+
+response = urllib.request.urlopen(request)
+content = response.read().decode(<span class="string">&quot;utf-8&quot;</span>)
+<span class="built_in">print</span>(content)</code></pre>
     </div>
     
     

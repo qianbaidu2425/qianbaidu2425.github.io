@@ -3,7 +3,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="utf-8" />
-    <title>千百度&#39;s cave</title>
+    <title>千百度&#39;s space</title>
     <meta name="author" content="千百度" />
     <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
     <meta name="keywords" content="" />
@@ -55,7 +55,7 @@
         <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
     <nav id="desktop-menu">
         <a class="title" href="/">
-            <span>千百度&#39;S CAVE</span>
+            <span>千百度&#39;S SPACE</span>
         </a>
         
         <a href="/">
@@ -87,7 +87,7 @@
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
             <i class="fa-solid fa-bars fa-fw"></i>
-            <span>&emsp;千百度&#39;S CAVE</span>
+            <span>&emsp;千百度&#39;S SPACE</span>
         </div>
         <transition name="slide">
             <div class="items" v-show="showMenuItems">
@@ -155,7 +155,7 @@
         <span class="loop"></span>
         <span class="info">
             <div class="wrap">
-                <h1>千百度&#39;s cave</h1>
+                <h1>千百度&#39;s space</h1>
                 <h3>——a tree hole for nichijou</h3>
                 <h5>我们所度过的每一个日常，或许就是连续不断发生的奇迹</h5>
             </div>
@@ -165,6 +165,593 @@
 <div id="home-posts-wrap" true ref="homePostsWrap">
     <div id="home-posts">
         
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%889%EF%BC%89%E4%BB%A3%E7%90%86%E5%92%8C%E4%BB%A3%E7%90%86%E6%B1%A0/">
+        <h2 class="post-title">urllib库（8）代理和代理池</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="代理和代理池"><a href="#代理和代理池" class="headerlink" title="代理和代理池"></a>代理和代理池</h3><p>一个伪装的ip地址，用一个字典表示<br>例：</p>
+<pre><code class="highlight plaintext">proxies = &#123;
+    &#x27;http&#x27;:&#x27;118.24.219.151:16817&#x27;
+&#125;</code></pre>
+
+<p>代理池就是多个代理组成的字典<br>例：</p>
+<pre><code class="highlight plaintext">proxies_pool = [
+    &#123;&#x27;http&#x27;:&#x27;118.24.219.151:16817&#x27;&#125;,
+    &#123;&#x27;http&#x27;:&#x27;113.124.93.38:9999&#x27;&#125;
+]</code></pre>
+
+<h3 id="代理的使用语法"><a href="#代理的使用语法" class="headerlink" title="代理的使用语法"></a>代理的使用语法</h3><pre><code class="highlight python">request = urllib.request.Request(url=url,headers=headers)
+handler = urllib.request.ProxyHandler(proxies=proxies)
+opener = urllib.request.build_opener(handler)
+response = opener.<span class="built_in">open</span>(request)</code></pre>
+
+<p>从代理池中随机抽取一个代理：</p>
+<pre><code class="highlight python"><span class="keyword">import</span> random
+proxies = random.choice(proxies_pool)</code></pre>
+
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%889%EF%BC%89%E4%BB%A3%E7%90%86%E5%92%8C%E4%BB%A3%E7%90%86%E6%B1%A0/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%888%EF%BC%89handler%E5%A4%84%E7%90%86%E5%99%A8/">
+        <h2 class="post-title">urllib库（8）handler处理器</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <pre><code class="highlight python"><span class="comment">#用handler来访问百度</span>
+<span class="keyword">import</span> urllib.request
+
+
+url = <span class="string">&#x27;http://www.baidu.com&#x27;</span>
+headers = &#123;
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>
+&#125;
+
+request = urllib.request.Request(url=url,headers=headers)
+<span class="comment">#(1)获取handler对象</span>
+handler = urllib.request.HTTPHandler()
+<span class="comment">#(2)获取opener对象</span>
+opener = urllib.request.build_opener(handler)
+<span class="comment">#(3)调用opener对象</span>
+response = opener.<span class="built_in">open</span>(request)
+content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+<span class="built_in">print</span>(content)</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%888%EF%BC%89handler%E5%A4%84%E7%90%86%E5%99%A8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%887%EF%BC%89%E5%BC%82%E5%B8%B8/">
+        <h2 class="post-title">urllib库（7）异常</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="常出现的两种异常："><a href="#常出现的两种异常：" class="headerlink" title="常出现的两种异常："></a>常出现的两种异常：</h3><p>1、HTTPError：出现在url种某个字符出现问题的时候<br>2、URLError:出现在这个url不存在的时候<br>其中：HTTPError是URLError的一个子类</p>
+<p>示例：</p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> urllib.error
+url1 = <span class="string">&#x27;https://blog.csdn.net/boysoft2002/article/details/132520234&#x27;</span>
+url2 = <span class="string">&#x27;https://blog.csdn.net/boy__soft2002/article/details/132520234&#x27;</span><span class="comment">#HTTPError</span>
+url3 = <span class="string">&#x27;http://www.yangkeyu.com&#x27;</span><span class="comment">#URLError</span>
+
+
+
+headers = &#123;
+<span class="string">&#x27;Accept&#x27;</span>:
+<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>,
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>
+&#125;
+
+
+<span class="keyword">try</span>:
+    request = urllib.request.Request(url=url3, headers=headers)
+    response = urllib.request.urlopen(request)
+    content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+    <span class="built_in">print</span>(content)
+<span class="keyword">except</span> urllib.error.HTTPError:
+    <span class="built_in">print</span>(<span class="string">&#x27;出现http错误&#x27;</span>)
+<span class="keyword">except</span> urllib.error.URLError:
+    <span class="built_in">print</span>(<span class="string">&quot;出现了url错误&quot;</span>)
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%887%EF%BC%89%E5%BC%82%E5%B8%B8/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%886%EF%BC%89ajax/">
+        <h2 class="post-title">urllib库（6）ajax</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="什么是ajax？"><a href="#什么是ajax？" class="headerlink" title="什么是ajax？"></a>什么是ajax？</h3><p>含有多个多个页面时，常有ajax请求，ajax请求也分为ajax的post请求和ajax的get请求</p>
+<h3 id="如何判断运用了ajax请求？"><a href="#如何判断运用了ajax请求？" class="headerlink" title="如何判断运用了ajax请求？"></a>如何判断运用了ajax请求？</h3><p>当headers中出现：X-Requested-With: XMLHttpRequest时，说明就是一个ajax请求</p>
+<p>代码示例：获得豆瓣电影前20页的数据</p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> urllib.parse
+url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+
+<span class="keyword">def</span> <span class="title function_">create_request</span>(<span class="params">page</span>):
+    base_url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+    data = &#123;
+        <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;上海&#x27;</span>,
+        <span class="string">&#x27;pid&#x27;</span>:<span class="string">&#x27;&#x27;</span>,
+        <span class="string">&#x27;pageIndex&#x27;</span>: page,
+        <span class="string">&#x27;pageSize&#x27;</span>: <span class="number">10</span>
+    &#125;
+    headers = &#123;
+        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
+        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>,
+        <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;ll=&quot;108296&quot;; bid=DIZJHJYe40Y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1697503350%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D7mX7_DYj1rvpVbk1-XVpnHlGWhhuOHcRgjFNbC0KoWEMe4-wytQfL4FZvJtRsTxC%26wd%3D%26eqid%3De80b52bb0000c24600000005652dd873%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __yadk_uid=cSeoVvLDVBPux8QedPv8ZhjqjQMyW7Ka; _vwo_uuid_v2=D0271D0AFA2BFE022D7B32A84C9C79BA9|9f33d547e5bc95d46eac63303551a3cb; _pk_id.100001.4cf6=3c8e0eace73a58d7.1697503374.; Hm_lvt_16a14f3002af32bf3a75dfe352478639=1697503401; Hm_lpvt_16a14f3002af32bf3a75dfe352478639=1697503401; __utma=30149280.267631944.1656475391.1656491114.1697503809.3; __utmb=30149280.0.10.1697503809; __utmc=30149280; __utmz=30149280.1697503809.3.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=223695111.902583869.1656491114.1656491114.1697503809.2; __utmb=223695111.0.10.1697503809; __utmc=223695111; __utmz=223695111.1697503809.2.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#x27;</span>
+    &#125;
+
+    data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf-8&#x27;</span>)
+    request = urllib.request.Request(url=base_url,data=data,headers=headers)
+    <span class="keyword">return</span> request
+
+<span class="keyword">def</span> <span class="title function_">get_content</span>(<span class="params">request</span>):
+    response = urllib.request.urlopen(request)
+    content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+    <span class="keyword">return</span> content
+
+
+<span class="keyword">def</span> <span class="title function_">download</span>(<span class="params">content,page</span>):
+    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;kfc&#x27;</span>+<span class="built_in">str</span>(page)+<span class="string">&#x27;.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file_object:
+        file_object.write(content)
+<span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:
+    start_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入起始页码： &#x27;</span>))
+    end_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入终止页码: &#x27;</span>))
+    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(start_page,end_page+<span class="number">1</span>):
+        request = create_request(page)
+        content = get_content(request)
+        download(content,page)
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%886%EF%BC%89ajax/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94post%E8%AF%B7%E6%B1%82/">
+        <h2 class="post-title">urllib库（4）——post请求</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="关于请求的方式"><a href="#关于请求的方式" class="headerlink" title="关于请求的方式"></a>关于请求的方式</h3><p>不同网页的请求方式不同，请求方式需要在网页打开后台来查询</p>
+<h3 id="post请求的特点"><a href="#post请求的特点" class="headerlink" title="post请求的特点"></a>post请求的特点</h3><p>1、post请求的参数，必须要事先用urlencode编码，urlencode会把字典变成Unicode编码，这时要再用<code>encode(&#39;utf-8)</code>把Unicode码变成byte！<br>2、post请求的参数需要放在一个列表中，在生成request对象的时候，作为data参数传入<br>3、获取到网页的源码后，记得要反序列化后才能阅读。  </p>
+<pre><code class="highlight python"><span class="comment">#post请求</span>
+<span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> urllib.parse
+<span class="keyword">import</span> json
+url = <span class="string">&#x27;https://fanyi.baidu.com/sug&#x27;</span> <span class="comment">#在原网页中，可以看出url的请求方式是post</span>
+headers = &#123;
+<span class="string">&#x27;Accept&#x27;</span>:
+<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>,
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>
+&#125;
+
+data=&#123;
+    <span class="string">&#x27;kw&#x27;</span>:<span class="string">&#x27;spider&#x27;</span>
+&#125;
+
+
+data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf-8&#x27;</span>)
+
+
+request = urllib.request.Request(url=url,data=data,headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+
+<span class="built_in">print</span>(content)
+<span class="built_in">print</span>(<span class="built_in">type</span>(content))
+<span class="comment">#反序列化，把字符串变成字典</span>
+obj = json.loads(content)
+<span class="built_in">print</span>(obj)
+<span class="built_in">print</span>(<span class="built_in">type</span>(obj))
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94post%E8%AF%B7%E6%B1%82/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%884%EF%BC%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6/">
+        <h2 class="post-title">urllib库（4）请求对象的定制</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="一个url的组成"><a href="#一个url的组成" class="headerlink" title="一个url的组成"></a>一个url的组成</h3><p><code>示例：https://www.baidu.com/s?wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&amp;sex=%E7%94%B7&amp;location=%E4%B8%AD%E5%9B%BD%E5%8F%B0%E6%B9%BE%E7%9C%81 </code><br>1、协议：http&#x2F;https<br>2、主机：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>3、端口号：<br>http：80<br>https：443<br>mysql：3306<br>oracle:1521<br>redis:6379<br>mongodb:27107<br>4、路径：s<br>5、参数：问号之后的数据<br>6、锚点</p>
+<h3 id="http和https协议的区别"><a href="#http和https协议的区别" class="headerlink" title="http和https协议的区别"></a>http和https协议的区别</h3><p>https经过加密，如果直接用urlopen函数打开使用https协议的url，那么获取到的数据就是不完整的</p>
+<h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p>User-Agent:一个反爬虫，放在一个名为headers的字典中</p>
+<p>headers包含了很多参数，例如Accept,Cookie等，但是最重要的参数还是Cookie!</p>
+<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>函数urlopen的传参URL可以是一个字符串表示的url，也可以是一个request类型的对象  </p>
+<p>把url和headers传入，获得一个request类型的对象，然后再传入urlopen函数中去获得响应   </p>
+<p><strong>特别注意：这里定制request对象必须用关键字传参！因为url和headers中间还有一个data传参，因此不能使用顺序传参！</strong></p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+url = <span class="string">&quot;https://www.baidu.com&quot;</span>
+
+
+headers = &#123;
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36&#x27;</span>
+&#125;
+
+
+request = urllib.request.Request(url = url,headers = headers)
+
+response = urllib.request.urlopen(request)
+content = response.read().decode(<span class="string">&quot;utf-8&quot;</span>)
+<span class="built_in">print</span>(content)</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%884%EF%BC%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E4%B8%8B%E8%BD%BD/">
+        <h2 class="post-title">urllib库（3）——下载</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>下载需要文件名和url</p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+
+<span class="comment">#下载网页</span>
+url_page = <span class="string">&quot;http://www.baidu.com&quot;</span>
+<span class="comment">#url代表的是下载的路径，file_name代表表的是文件名</span>
+<span class="comment">#urllib.request.urlretrieve(url_page, &#x27;baidu.html&#x27;)</span>
+
+<span class="comment">#下载图片</span>
+url_image = <span class="string">&#x27;https://img1.baidu.com/it/u=36041914,4185692496&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=270&amp;h=180&#x27;</span>
+urllib.request.urlretrieve(url_image,<span class="string">&#x27;孤独摇滚.jpg&#x27;</span>)
+
+<span class="comment">#下载视频</span>
+</code></pre>
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E4%B8%8B%E8%BD%BD/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%BC%96%E7%A0%81/">
+        <h2 class="post-title">urllib库（2）——编码</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>如今最常用的编码方式是unicode编码，Unicode编码可以把文字编码后夹在url后作为后缀</p>
+<h4 id="quote编码"><a href="#quote编码" class="headerlink" title="quote编码"></a>quote编码</h4><pre><code class="highlight python"><span class="comment">#如今的常用编码方式：unicode编码</span>
+<span class="keyword">import</span> urllib.parse
+<span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> time
+
+url = <span class="string">&#x27;https://www.baidu.com/s?w=&#x27;</span>
+
+headers=&#123;
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
+<span class="string">&#x27;Accept&#x27;</span>:
+<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>
+
+
+&#125;
+
+<span class="comment">#把汉字变成Unicode编码模式:编码</span>
+name=urllib.parse.quote(<span class="string">&quot;葬送的芙莉莲&quot;</span>)
+url=url+name
+<span class="built_in">print</span>(url)
+request = urllib.request.Request(url=url, headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+
+<span class="built_in">print</span>(content)
+</code></pre>
+<h4 id="用urlencode方式编码"><a href="#用urlencode方式编码" class="headerlink" title="用urlencode方式编码"></a>用urlencode方式编码</h4><pre><code class="highlight python"><span class="comment">#如今的常用编码方式：unicode编码</span>
+<span class="keyword">import</span> urllib.parse
+<span class="keyword">import</span> urllib.request
+<span class="keyword">import</span> time
+
+url = <span class="string">&#x27;https://www.baidu.com/s?w=&#x27;</span>
+
+headers=&#123;
+<span class="string">&#x27;User-Agent&#x27;</span>:
+<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
+<span class="string">&#x27;Accept&#x27;</span>:
+<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>
+
+
+&#125;
+
+<span class="comment">#把汉字变成Unicode编码模式:编码</span>
+name=urllib.parse.quote(<span class="string">&quot;葬送的芙莉莲&quot;</span>)
+url=url+name
+<span class="built_in">print</span>(url)
+request = urllib.request.Request(url=url, headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+
+<span class="built_in">print</span>(content)
+</code></pre>
+<hr>
+<p>总结：<br>quote编码适用于只需要编码一个对象的时候，其传入的参数是一个字符串<br>urlencode编码适用于要编码多个对象的时候，其传入的参数是一个列表</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%BC%96%E7%A0%81/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+        <h2 class="post-title">urllib库（1）——基本用法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="使用urllib获取网页数据的基本流程"><a href="#使用urllib获取网页数据的基本流程" class="headerlink" title="使用urllib获取网页数据的基本流程"></a>使用urllib获取网页数据的基本流程</h2><p>1、定义一个url<br>2、模拟浏览器向服务器发送请求<br>3、获取相应页面的源码<br>4、把源码解码</p>
+<pre><code class="highlight python"><span class="comment">#使用urllib来获取百度页面的原数据</span>
+
+<span class="keyword">import</span> urllib.request
+<span class="comment">#1、定义一个url</span>
+url = <span class="string">&#x27;http://www.baidu.com&#x27;</span>
+<span class="comment">#2、模拟浏览器向服务器发送请求</span>
+response = urllib.request.urlopen(url)
+<span class="comment">#3、获取相应中的页面的源码</span>
+<span class="comment">#read返回的是字节形式的二进制数据</span>
+<span class="comment">#将二进制数据转换为字符串：解码</span>
+<span class="comment">#解码：decode(&#x27;编码的格式&#x27;)</span>
+content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+
+<span class="built_in">print</span>(content)
+</code></pre>
+
+<h2 id="urllib的一个类型和6种方法"><a href="#urllib的一个类型和6种方法" class="headerlink" title="urllib的一个类型和6种方法"></a>urllib的一个类型和6种方法</h2><h3 id="一个类型"><a href="#一个类型" class="headerlink" title="一个类型"></a>一个类型</h3><p>response是HTTPResponse的类型</p>
+<h3 id="6种方法"><a href="#6种方法" class="headerlink" title="6种方法"></a>6种方法</h3><p>1、一个一个字节来读<br>2、n个n个字节来读<br>3、只读一行<br>4、一行一行来读直到读完<br>5、返回url地址<br>6、返回网页的状态  </p>
+<p>附加方法：检查response是否有逻辑错误</p>
+<p>实例代码：</p>
+<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+url = <span class="string">&quot;http://www.baidu.com&quot;</span>
+response = urllib.request.urlopen(url)
+<span class="comment">#一个类型和六个方法</span>
+<span class="comment">#print(type(response))</span>
+<span class="comment">#response是HTTPResponse的类型</span>
+
+<span class="comment">#按照一个一个字节来读</span>
+<span class="string">&quot;&quot;&quot;content = response.read()</span>
+<span class="string">print(content)&quot;&quot;&quot;</span>
+
+<span class="comment">#read(n)表示返回n个字节</span>
+<span class="string">&quot;&quot;&quot;content = response.read(5)</span>
+<span class="string">print(content)&quot;&quot;&quot;</span>
+
+<span class="comment">#读取一行</span>
+<span class="string">&quot;&quot;&quot;content = response.readline()</span>
+<span class="string">print(content)&quot;&quot;&quot;</span>
+
+<span class="comment">#一行一行来读直到读完</span>
+<span class="string">&quot;&quot;&quot;content = response.readlines()</span>
+<span class="string">print(content)&quot;&quot;&quot;</span>
+
+<span class="comment">#返回状态码 如果是200 则说明逻辑没有错误</span>
+<span class="comment">#print(response.getcode())</span>
+
+<span class="comment">#返回url地址</span>
+<span class="comment">#print(response.geturl())</span>
+
+<span class="comment">#获取的是一些状态信息</span>
+<span class="built_in">print</span>(response.getheaders())
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
 
 <div class="post">
     <a href="/2023/11/05/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/">
@@ -201,82 +788,19 @@
     <a href="/2023/11/05/%E5%86%99%E5%9C%A8%E6%9C%80%E5%89%8D%E9%9D%A2/" class="go-post">阅读全文</a>
 </div>
 
-<div class="post">
-    <a href="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/">
-        <h2 class="post-title">用递归模拟混沌现象</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/11/5
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p><img src="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/b0d450e51c92beab5c2339837c3f799.png" alt="Alt text"></p>
-<h3 id="代码实现（python）"><a href="#代码实现（python）" class="headerlink" title="代码实现（python）"></a>代码实现（python）</h3><pre><code class="highlight python"><span class="comment">#这个程序的作用是研究X(n+1)=1-kX(n)^2这个方程实现的混沌现象</span>
-<span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt
-x = []
-y = []
-<span class="comment"># 先创建一个空的散点图</span>
-plt.scatter(x, y)
-<span class="comment"># 给散点图添加标题，并给坐标轴命名</span>
-plt.title(<span class="string">&#x27;x-k&#x27;</span>)
-plt.xlabel(<span class="string">&#x27;k&#x27;</span>)
-plt.ylabel(<span class="string">&#x27;x&#x27;</span>)
-<span class="comment">#设置基础参数</span>
-step = <span class="number">0.01</span>
-x = <span class="number">5</span>
-k = <span class="number">0</span>
-<span class="comment">#k从0递增到2，步长为0.01</span>
-<span class="keyword">while</span> k&lt;=<span class="number">2</span>:
-    <span class="comment">#先把k的位数定为2位</span>
-    k = <span class="built_in">round</span>(k,<span class="number">2</span>)
-    <span class="comment">#先迭代500次，得到方程迭代500次后x的数值</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">501</span>):
-        x = <span class="number">1</span> - k * x * x
-    <span class="comment">#接下来再迭代100次，并把每次得到的x，用(k,x)坐标的形式画在散点图中</span>
-    <span class="comment">#如果是单倍周期，那么x在这100次迭代的过程中会稳定在某一个值，否则会在几个值之间跳动</span>
-    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">101</span>):
-        x = <span class="number">1</span> - k * x * x
-        plt.scatter(k,x,color = <span class="string">&#x27;black&#x27;</span>,s = <span class="number">10</span>)
-        <span class="built_in">print</span>(k)
-    k = k + step
-<span class="comment">#接下来实现鼠标点击读取坐标功能：</span>
-<span class="keyword">def</span> <span class="title function_">onclick</span>(<span class="params">event</span>):
-    <span class="keyword">if</span> event.xdata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> event.ydata <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:
-        <span class="built_in">print</span>(<span class="string">f&quot;点击坐标：(<span class="subst">&#123;event.xdata&#125;</span>, <span class="subst">&#123;event.ydata&#125;</span>)&quot;</span>)
-cid = plt.gcf().canvas.mpl_connect(<span class="string">&#x27;button_press_event&#x27;</span>, onclick)
-<span class="comment">#把画好的散点图表示出来</span>
-plt.show()</code></pre>
-
-
-
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/11/05/%E7%94%A8%E9%80%92%E5%BD%92%E6%A8%A1%E6%8B%9F%E6%B7%B7%E6%B2%8C%E7%8E%B0%E8%B1%A1/" class="go-post">阅读全文</a>
-</div>
-
 
         <div class="page-current">
     
     <span class="current">1</span>
     
+    <a class="page-num" href="/page/2">2</a>
     
     
+    
+    
+    <a class="page-num" href="/page/2/">
+        <i class="fa-solid fa-caret-right fa-fw"></i>
+    </a>
     
 </div>
 
@@ -290,7 +814,7 @@ plt.show()</code></pre>
         </div>
         <div class="name">千百度</div>
         <div class="description">
-            <p>Hello, this is qianbaidu.</p>
+            <p>我的灵魂还能吟歌</p>
 
         </div>
         
@@ -298,7 +822,7 @@ plt.show()</code></pre>
         <div class="friend-links">
             
             <div class="friend-link">
-                <a target="_blank" rel="noopener" href="https://github.com/qianbaidu2425">Argvchs</a>
+                <a target="_blank" rel="noopener" href="https://github.com/qianbaidu2425">qianbaidu_github</a>
             </div>
             
         </div>
@@ -314,7 +838,7 @@ plt.show()</code></pre>
     <div id="footer-wrap">
         <div>
             &copy;
-            2022 - 2023 千百度&#39;s cave
+            2022 - 2023 千百度&#39;s space
             <span id="footer-icon">
                 <i class="fa-solid fa-font-awesome fa-fw"></i>
             </span>
