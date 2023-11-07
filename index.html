@@ -202,6 +202,41 @@
 </div>
 
 <div class="post">
+    <a href="/2023/11/07/%E5%8D%83%E7%99%BE%E5%BA%A6%E7%9A%84%E5%8A%A8%E6%BC%AB%E4%B8%93%E6%A0%8F/">
+        <h2 class="post-title">千百度的动漫专栏</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/7
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <p>目前，千百度已经写下了17篇动漫评论了，发布在b站的个人专栏里了：<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/readlist/rl730811?spm_id_from=333.999.0.0" title="千百度的个人专栏">千百度的漫评</a></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/07/%E5%8D%83%E7%99%BE%E5%BA%A6%E7%9A%84%E5%8A%A8%E6%BC%AB%E4%B8%93%E6%A0%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%889%EF%BC%89%E4%BB%A3%E7%90%86%E5%92%8C%E4%BB%A3%E7%90%86%E6%B1%A0/">
         <h2 class="post-title">urllib库（8）代理和代理池</h2>
     </a>
@@ -701,93 +736,6 @@ content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94%E7%BC%96%E7%A0%81/" class="go-post">阅读全文</a>
 </div>
 
-<div class="post">
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
-        <h2 class="post-title">urllib库（1）——基本用法</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/11/6
-        </span>
-        
-        
-        <span class="special">
-            <i class="fa-solid fa-grip-vertical fa-fw"></i>
-        </span>
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h2 id="使用urllib获取网页数据的基本流程"><a href="#使用urllib获取网页数据的基本流程" class="headerlink" title="使用urllib获取网页数据的基本流程"></a>使用urllib获取网页数据的基本流程</h2><p>1、定义一个url<br>2、模拟浏览器向服务器发送请求<br>3、获取相应页面的源码<br>4、把源码解码</p>
-<pre><code class="highlight python"><span class="comment">#使用urllib来获取百度页面的原数据</span>
-
-<span class="keyword">import</span> urllib.request
-<span class="comment">#1、定义一个url</span>
-url = <span class="string">&#x27;http://www.baidu.com&#x27;</span>
-<span class="comment">#2、模拟浏览器向服务器发送请求</span>
-response = urllib.request.urlopen(url)
-<span class="comment">#3、获取相应中的页面的源码</span>
-<span class="comment">#read返回的是字节形式的二进制数据</span>
-<span class="comment">#将二进制数据转换为字符串：解码</span>
-<span class="comment">#解码：decode(&#x27;编码的格式&#x27;)</span>
-content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
-
-<span class="built_in">print</span>(content)
-</code></pre>
-
-<h2 id="urllib的一个类型和6种方法"><a href="#urllib的一个类型和6种方法" class="headerlink" title="urllib的一个类型和6种方法"></a>urllib的一个类型和6种方法</h2><h3 id="一个类型"><a href="#一个类型" class="headerlink" title="一个类型"></a>一个类型</h3><p>response是HTTPResponse的类型</p>
-<h3 id="6种方法"><a href="#6种方法" class="headerlink" title="6种方法"></a>6种方法</h3><p>1、一个一个字节来读<br>2、n个n个字节来读<br>3、只读一行<br>4、一行一行来读直到读完<br>5、返回url地址<br>6、返回网页的状态  </p>
-<p>附加方法：检查response是否有逻辑错误</p>
-<p>实例代码：</p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
-url = <span class="string">&quot;http://www.baidu.com&quot;</span>
-response = urllib.request.urlopen(url)
-<span class="comment">#一个类型和六个方法</span>
-<span class="comment">#print(type(response))</span>
-<span class="comment">#response是HTTPResponse的类型</span>
-
-<span class="comment">#按照一个一个字节来读</span>
-<span class="string">&quot;&quot;&quot;content = response.read()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
-
-<span class="comment">#read(n)表示返回n个字节</span>
-<span class="string">&quot;&quot;&quot;content = response.read(5)</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
-
-<span class="comment">#读取一行</span>
-<span class="string">&quot;&quot;&quot;content = response.readline()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
-
-<span class="comment">#一行一行来读直到读完</span>
-<span class="string">&quot;&quot;&quot;content = response.readlines()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
-
-<span class="comment">#返回状态码 如果是200 则说明逻辑没有错误</span>
-<span class="comment">#print(response.getcode())</span>
-
-<span class="comment">#返回url地址</span>
-<span class="comment">#print(response.geturl())</span>
-
-<span class="comment">#获取的是一些状态信息</span>
-<span class="built_in">print</span>(response.getheaders())
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="go-post">阅读全文</a>
-</div>
-
 
         <div class="page-current">
     
@@ -823,6 +771,10 @@ response = urllib.request.urlopen(url)
             
             <div class="friend-link">
                 <a target="_blank" rel="noopener" href="https://github.com/qianbaidu2425">qianbaidu_github</a>
+            </div>
+            
+            <div class="friend-link">
+                <a target="_blank" rel="noopener" href="https://space.bilibili.com/2005160247?spm_id_from=333.1007.0.0">qianbaidu_bilibili</a>
             </div>
             
         </div>
