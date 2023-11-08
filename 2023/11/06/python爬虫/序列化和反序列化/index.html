@@ -166,44 +166,44 @@
     <div class="content" v-pre>
         <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>把列表、字典等类型的对象转换为字符串类型之后才可以写进txt文件中</p>
 <p>有dumps和dump两种用法：</p>
-<pre><code class="highlight python"><span class="keyword">import</span> json
-<span class="comment">#dumps</span>
-<span class="string">&quot;&quot;&quot;</span>
-<span class="string">with open(&#x27;example.txt&#x27;,&#x27;w&#x27;) as object:</span>
-<span class="string">    a = [&#x27;yes&#x27;, &#x27;no&#x27;]</span>
-<span class="string">    b = json.dumps(a)</span>
-<span class="string">    #此时b的类型是str</span>
-<span class="string">    object.write(b)</span>
-<span class="string">&quot;&quot;&quot;</span>
-<span class="comment">#dump</span>
-<span class="comment">#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里</span>
+<pre><code class="python">import json
+#dumps
+&quot;&quot;&quot;
+with open(&#39;example.txt&#39;,&#39;w&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;]
+    b = json.dumps(a)
+    #此时b的类型是str
+    object.write(b)
+&quot;&quot;&quot;
+#dump
+#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里
 
-<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;example.txt&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> <span class="built_in">object</span>:
-    a = [<span class="string">&#x27;yes&#x27;</span>, <span class="string">&#x27;no&#x27;</span>,<span class="string">&#x27;yes&#x27;</span>]
-    json.dump(a, <span class="built_in">object</span>)
-    <span class="built_in">print</span>(<span class="built_in">object</span>)
+with open(&quot;example.txt&quot;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;,&#39;yes&#39;]
+    json.dump(a, object)
+    print(object)
 
 </code></pre>
-
 <h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><p>把txt文件中的str字符串还原成python中的各类对象</p>
-<p>有load和loads两种用法</p>
-<pre><code class="highlight python"><span class="keyword">import</span> json
-<span class="comment">#dumps</span>
-<span class="string">&quot;&quot;&quot;</span>
-<span class="string">with open(&#x27;example.txt&#x27;,&#x27;w&#x27;) as object:</span>
-<span class="string">    a = [&#x27;yes&#x27;, &#x27;no&#x27;]</span>
-<span class="string">    b = json.dumps(a)</span>
-<span class="string">    #此时b的类型是str</span>
-<span class="string">    object.write(b)</span>
-<span class="string">&quot;&quot;&quot;</span>
-<span class="comment">#dump</span>
-<span class="comment">#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里</span>
+<p>有load和loads两种用法   </p>
+<pre><code class="python">import json
+#dumps
+&quot;&quot;&quot;
+with open(&#39;example.txt&#39;,&#39;w&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;]
+    b = json.dumps(a)
+    #此时b的类型是str
+    object.write(b)
+&quot;&quot;&quot;
+#dump
+#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里
 
-<span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&quot;example.txt&quot;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> <span class="built_in">object</span>:
-    a = [<span class="string">&#x27;yes&#x27;</span>, <span class="string">&#x27;no&#x27;</span>,<span class="string">&#x27;yes&#x27;</span>]
-    json.dump(a, <span class="built_in">object</span>)
-    <span class="built_in">print</span>(<span class="built_in">object</span>)
+with open(&quot;example.txt&quot;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;,&#39;yes&#39;]
+    json.dump(a, object)
+    print(object)
 </code></pre>
+
     </div>
     
     

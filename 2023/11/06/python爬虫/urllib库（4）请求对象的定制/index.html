@@ -171,21 +171,23 @@
 <h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>函数urlopen的传参URL可以是一个字符串表示的url，也可以是一个request类型的对象  </p>
 <p>把url和headers传入，获得一个request类型的对象，然后再传入urlopen函数中去获得响应   </p>
 <p><strong>特别注意：这里定制request对象必须用关键字传参！因为url和headers中间还有一个data传参，因此不能使用顺序传参！</strong></p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
-url = <span class="string">&quot;https://www.baidu.com&quot;</span>
+<pre><code class="python">import urllib.request
+url = &quot;https://www.baidu.com&quot;
 
 
 headers = &#123;
-<span class="string">&#x27;User-Agent&#x27;</span>:
-<span class="string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36&#x27;</span>
+&#39;User-Agent&#39;:
+&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36&#39;
 &#125;
 
 
 request = urllib.request.Request(url = url,headers = headers)
 
 response = urllib.request.urlopen(request)
-content = response.read().decode(<span class="string">&quot;utf-8&quot;</span>)
-<span class="built_in">print</span>(content)</code></pre>
+content = response.read().decode(&quot;utf-8&quot;)
+print(content)
+</code></pre>
+
     </div>
     
     

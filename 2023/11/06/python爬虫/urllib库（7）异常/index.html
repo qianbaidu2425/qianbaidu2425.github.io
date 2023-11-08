@@ -166,32 +166,33 @@
     <div class="content" v-pre>
         <h3 id="常出现的两种异常："><a href="#常出现的两种异常：" class="headerlink" title="常出现的两种异常："></a>常出现的两种异常：</h3><p>1、HTTPError：出现在url种某个字符出现问题的时候<br>2、URLError:出现在这个url不存在的时候<br>其中：HTTPError是URLError的一个子类</p>
 <p>示例：</p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
-<span class="keyword">import</span> urllib.error
-url1 = <span class="string">&#x27;https://blog.csdn.net/boysoft2002/article/details/132520234&#x27;</span>
-url2 = <span class="string">&#x27;https://blog.csdn.net/boy__soft2002/article/details/132520234&#x27;</span><span class="comment">#HTTPError</span>
-url3 = <span class="string">&#x27;http://www.yangkeyu.com&#x27;</span><span class="comment">#URLError</span>
+<pre><code class="python">import urllib.request
+import urllib.error
+url1 = &#39;https://blog.csdn.net/boysoft2002/article/details/132520234&#39;
+url2 = &#39;https://blog.csdn.net/boy__soft2002/article/details/132520234&#39;#HTTPError
+url3 = &#39;http://www.yangkeyu.com&#39;#URLError
 
 
 
 headers = &#123;
-<span class="string">&#x27;Accept&#x27;</span>:
-<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>,
-<span class="string">&#x27;User-Agent&#x27;</span>:
-<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>
+&#39;Accept&#39;:
+&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#39;,
+&#39;User-Agent&#39;:
+&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;
 &#125;
 
 
-<span class="keyword">try</span>:
+try:
     request = urllib.request.Request(url=url3, headers=headers)
     response = urllib.request.urlopen(request)
-    content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
-    <span class="built_in">print</span>(content)
-<span class="keyword">except</span> urllib.error.HTTPError:
-    <span class="built_in">print</span>(<span class="string">&#x27;出现http错误&#x27;</span>)
-<span class="keyword">except</span> urllib.error.URLError:
-    <span class="built_in">print</span>(<span class="string">&quot;出现了url错误&quot;</span>)
+    content = response.read().decode(&#39;utf-8&#39;)
+    print(content)
+except urllib.error.HTTPError:
+    print(&#39;出现http错误&#39;)
+except urllib.error.URLError:
+    print(&quot;出现了url错误&quot;)
 </code></pre>
+
     </div>
     
     

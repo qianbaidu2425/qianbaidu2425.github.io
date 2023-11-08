@@ -165,19 +165,20 @@
     
     <div class="content" v-pre>
         <p>下载需要文件名和url</p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
+<pre><code class="python">import urllib.request
 
-<span class="comment">#下载网页</span>
-url_page = <span class="string">&quot;http://www.baidu.com&quot;</span>
-<span class="comment">#url代表的是下载的路径，file_name代表表的是文件名</span>
-<span class="comment">#urllib.request.urlretrieve(url_page, &#x27;baidu.html&#x27;)</span>
+#下载网页
+url_page = &quot;http://www.baidu.com&quot;
+#url代表的是下载的路径，file_name代表表的是文件名
+#urllib.request.urlretrieve(url_page, &#39;baidu.html&#39;)
 
-<span class="comment">#下载图片</span>
-url_image = <span class="string">&#x27;https://img1.baidu.com/it/u=36041914,4185692496&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=270&amp;h=180&#x27;</span>
-urllib.request.urlretrieve(url_image,<span class="string">&#x27;孤独摇滚.jpg&#x27;</span>)
+#下载图片
+url_image = &#39;https://img1.baidu.com/it/u=36041914,4185692496&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=270&amp;h=180&#39;
+urllib.request.urlretrieve(url_image,&#39;孤独摇滚.jpg&#39;)
 
-<span class="comment">#下载视频</span>
+#下载视频
 </code></pre>
+
     </div>
     
     

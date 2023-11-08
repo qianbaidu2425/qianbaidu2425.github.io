@@ -165,57 +165,57 @@
     
     <div class="content" v-pre>
         <p>如今最常用的编码方式是unicode编码，Unicode编码可以把文字编码后夹在url后作为后缀</p>
-<h4 id="quote编码"><a href="#quote编码" class="headerlink" title="quote编码"></a>quote编码</h4><pre><code class="highlight python"><span class="comment">#如今的常用编码方式：unicode编码</span>
-<span class="keyword">import</span> urllib.parse
-<span class="keyword">import</span> urllib.request
-<span class="keyword">import</span> time
+<h4 id="quote编码"><a href="#quote编码" class="headerlink" title="quote编码"></a>quote编码</h4><pre><code class="python">#如今的常用编码方式：unicode编码
+import urllib.parse
+import urllib.request
+import time
 
-url = <span class="string">&#x27;https://www.baidu.com/s?w=&#x27;</span>
+url = &#39;https://www.baidu.com/s?w=&#39;
 
 headers=&#123;
-<span class="string">&#x27;User-Agent&#x27;</span>:
-<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
-<span class="string">&#x27;Accept&#x27;</span>:
-<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>
+&#39;User-Agent&#39;:
+&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;,
+&#39;Accept&#39;:
+&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#39;
 
 
 &#125;
 
-<span class="comment">#把汉字变成Unicode编码模式:编码</span>
-name=urllib.parse.quote(<span class="string">&quot;葬送的芙莉莲&quot;</span>)
+#把汉字变成Unicode编码模式:编码
+name=urllib.parse.quote(&quot;葬送的芙莉莲&quot;)
 url=url+name
-<span class="built_in">print</span>(url)
+print(url)
 request = urllib.request.Request(url=url, headers=headers)
 response = urllib.request.urlopen(request)
-content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+content = response.read().decode(&#39;utf-8&#39;)
 
-<span class="built_in">print</span>(content)
+print(content)
 </code></pre>
-<h4 id="用urlencode方式编码"><a href="#用urlencode方式编码" class="headerlink" title="用urlencode方式编码"></a>用urlencode方式编码</h4><pre><code class="highlight python"><span class="comment">#如今的常用编码方式：unicode编码</span>
-<span class="keyword">import</span> urllib.parse
-<span class="keyword">import</span> urllib.request
-<span class="keyword">import</span> time
+<h4 id="用urlencode方式编码"><a href="#用urlencode方式编码" class="headerlink" title="用urlencode方式编码"></a>用urlencode方式编码</h4><pre><code class="python">#如今的常用编码方式：unicode编码
+import urllib.parse
+import urllib.request
+import time
 
-url = <span class="string">&#x27;https://www.baidu.com/s?w=&#x27;</span>
+url = &#39;https://www.baidu.com/s?w=&#39;
 
 headers=&#123;
-<span class="string">&#x27;User-Agent&#x27;</span>:
-<span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
-<span class="string">&#x27;Accept&#x27;</span>:
-<span class="string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#x27;</span>
+&#39;User-Agent&#39;:
+&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;,
+&#39;Accept&#39;:
+&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#39;
 
 
 &#125;
 
-<span class="comment">#把汉字变成Unicode编码模式:编码</span>
-name=urllib.parse.quote(<span class="string">&quot;葬送的芙莉莲&quot;</span>)
+#把汉字变成Unicode编码模式:编码
+name=urllib.parse.quote(&quot;葬送的芙莉莲&quot;)
 url=url+name
-<span class="built_in">print</span>(url)
+print(url)
 request = urllib.request.Request(url=url, headers=headers)
 response = urllib.request.urlopen(request)
-content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+content = response.read().decode(&#39;utf-8&#39;)
 
-<span class="built_in">print</span>(content)
+print(content)
 </code></pre>
 <hr>
 <p>总结：<br>quote编码适用于只需要编码一个对象的时候，其传入的参数是一个字符串<br>urlencode编码适用于要编码多个对象的时候，其传入的参数是一个列表</p>

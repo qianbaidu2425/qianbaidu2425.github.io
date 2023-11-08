@@ -3,7 +3,7 @@
 <html lang="zh-Hans">
 <head>
     <meta charset="utf-8" />
-    <title>urllib库（8）handler处理器 | 千百度&#39;s space</title>
+    <title>关于markdown语法的一个小发现 | 千百度&#39;s space</title>
     <meta name="author" content="千百度" />
     <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
     <meta name="keywords" content="" />
@@ -150,40 +150,21 @@
         <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
             <div class="article">
     <div>
-        <h1>urllib库（8）handler处理器</h1>
+        <h1>关于markdown语法的一个小发现</h1>
     </div>
     <div class="info">
         <span class="date">
             <span class="icon">
                 <i class="fa-solid fa-calendar fa-fw"></i>
             </span>
-            2023/11/6
+            2023/11/8
         </span>
         
         
     </div>
     
     <div class="content" v-pre>
-        <pre><code class="python">#用handler来访问百度
-import urllib.request
-
-
-url = &#39;http://www.baidu.com&#39;
-headers = &#123;
-&#39;User-Agent&#39;:
-&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;
-&#125;
-
-request = urllib.request.Request(url=url,headers=headers)
-#(1)获取handler对象
-handler = urllib.request.HTTPHandler()
-#(2)获取opener对象
-opener = urllib.request.build_opener(handler)
-#(3)调用opener对象
-response = opener.open(request)
-content = response.read().decode(&#39;utf-8&#39;)
-print(content)
-</code></pre>
+        <p>千百度今天注意到，插入代码块的时候，不管是用&#96;&#96;&#96;引起，还是用~~~引起，都得在结尾三个符号后面加上一个tab，才能产生高亮的效果。</p>
 
     </div>
     

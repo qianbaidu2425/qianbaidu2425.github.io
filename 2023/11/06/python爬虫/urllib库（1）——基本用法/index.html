@@ -165,57 +165,56 @@
     
     <div class="content" v-pre>
         <h2 id="使用urllib获取网页数据的基本流程"><a href="#使用urllib获取网页数据的基本流程" class="headerlink" title="使用urllib获取网页数据的基本流程"></a>使用urllib获取网页数据的基本流程</h2><p>1、定义一个url<br>2、模拟浏览器向服务器发送请求<br>3、获取相应页面的源码<br>4、把源码解码</p>
-<pre><code class="highlight python"><span class="comment">#使用urllib来获取百度页面的原数据</span>
+<pre><code class="python">#使用urllib来获取百度页面的原数据
 
-<span class="keyword">import</span> urllib.request
-<span class="comment">#1、定义一个url</span>
-url = <span class="string">&#x27;http://www.baidu.com&#x27;</span>
-<span class="comment">#2、模拟浏览器向服务器发送请求</span>
+import urllib.request
+#1、定义一个url
+url = &#39;http://www.baidu.com&#39;
+#2、模拟浏览器向服务器发送请求
 response = urllib.request.urlopen(url)
-<span class="comment">#3、获取相应中的页面的源码</span>
-<span class="comment">#read返回的是字节形式的二进制数据</span>
-<span class="comment">#将二进制数据转换为字符串：解码</span>
-<span class="comment">#解码：decode(&#x27;编码的格式&#x27;)</span>
-content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
+#3、获取相应中的页面的源码
+#read返回的是字节形式的二进制数据
+#将二进制数据转换为字符串：解码
+#解码：decode(&#39;编码的格式&#39;)
+content = response.read().decode(&#39;utf-8&#39;)
 
-<span class="built_in">print</span>(content)
+print(content)
 </code></pre>
-
 <h2 id="urllib的一个类型和6种方法"><a href="#urllib的一个类型和6种方法" class="headerlink" title="urllib的一个类型和6种方法"></a>urllib的一个类型和6种方法</h2><h3 id="一个类型"><a href="#一个类型" class="headerlink" title="一个类型"></a>一个类型</h3><p>response是HTTPResponse的类型</p>
 <h3 id="6种方法"><a href="#6种方法" class="headerlink" title="6种方法"></a>6种方法</h3><p>1、一个一个字节来读<br>2、n个n个字节来读<br>3、只读一行<br>4、一行一行来读直到读完<br>5、返回url地址<br>6、返回网页的状态  </p>
 <p>附加方法：检查response是否有逻辑错误</p>
 <p>实例代码：</p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
-url = <span class="string">&quot;http://www.baidu.com&quot;</span>
+<pre><code class="python">import urllib.request
+url = &quot;http://www.baidu.com&quot;
 response = urllib.request.urlopen(url)
-<span class="comment">#一个类型和六个方法</span>
-<span class="comment">#print(type(response))</span>
-<span class="comment">#response是HTTPResponse的类型</span>
+#一个类型和六个方法
+#print(type(response))
+#response是HTTPResponse的类型
 
-<span class="comment">#按照一个一个字节来读</span>
-<span class="string">&quot;&quot;&quot;content = response.read()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
+#按照一个一个字节来读
+&quot;&quot;&quot;content = response.read()
+print(content)&quot;&quot;&quot;
 
-<span class="comment">#read(n)表示返回n个字节</span>
-<span class="string">&quot;&quot;&quot;content = response.read(5)</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
+#read(n)表示返回n个字节
+&quot;&quot;&quot;content = response.read(5)
+print(content)&quot;&quot;&quot;
 
-<span class="comment">#读取一行</span>
-<span class="string">&quot;&quot;&quot;content = response.readline()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
+#读取一行
+&quot;&quot;&quot;content = response.readline()
+print(content)&quot;&quot;&quot;
 
-<span class="comment">#一行一行来读直到读完</span>
-<span class="string">&quot;&quot;&quot;content = response.readlines()</span>
-<span class="string">print(content)&quot;&quot;&quot;</span>
+#一行一行来读直到读完
+&quot;&quot;&quot;content = response.readlines()
+print(content)&quot;&quot;&quot;
 
-<span class="comment">#返回状态码 如果是200 则说明逻辑没有错误</span>
-<span class="comment">#print(response.getcode())</span>
+#返回状态码 如果是200 则说明逻辑没有错误
+#print(response.getcode())
 
-<span class="comment">#返回url地址</span>
-<span class="comment">#print(response.geturl())</span>
+#返回url地址
+#print(response.geturl())
 
-<span class="comment">#获取的是一些状态信息</span>
-<span class="built_in">print</span>(response.getheaders())
+#获取的是一些状态信息
+print(response.getheaders())
 </code></pre>
 
     </div>

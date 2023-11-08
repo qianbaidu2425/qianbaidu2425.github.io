@@ -167,45 +167,46 @@
         <h3 id="什么是ajax？"><a href="#什么是ajax？" class="headerlink" title="什么是ajax？"></a>什么是ajax？</h3><p>含有多个多个页面时，常有ajax请求，ajax请求也分为ajax的post请求和ajax的get请求</p>
 <h3 id="如何判断运用了ajax请求？"><a href="#如何判断运用了ajax请求？" class="headerlink" title="如何判断运用了ajax请求？"></a>如何判断运用了ajax请求？</h3><p>当headers中出现：X-Requested-With: XMLHttpRequest时，说明就是一个ajax请求</p>
 <p>代码示例：获得豆瓣电影前20页的数据</p>
-<pre><code class="highlight python"><span class="keyword">import</span> urllib.request
-<span class="keyword">import</span> urllib.parse
-url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+<pre><code class="python">import urllib.request
+import urllib.parse
+url = &#39;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#39;
 
-<span class="keyword">def</span> <span class="title function_">create_request</span>(<span class="params">page</span>):
-    base_url = <span class="string">&#x27;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#x27;</span>
+def create_request(page):
+    base_url = &#39;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#39;
     data = &#123;
-        <span class="string">&#x27;cname&#x27;</span>: <span class="string">&#x27;上海&#x27;</span>,
-        <span class="string">&#x27;pid&#x27;</span>:<span class="string">&#x27;&#x27;</span>,
-        <span class="string">&#x27;pageIndex&#x27;</span>: page,
-        <span class="string">&#x27;pageSize&#x27;</span>: <span class="number">10</span>
+        &#39;cname&#39;: &#39;上海&#39;,
+        &#39;pid&#39;:&#39;&#39;,
+        &#39;pageIndex&#39;: page,
+        &#39;pageSize&#39;: 10
     &#125;
     headers = &#123;
-        <span class="string">&#x27;User-Agent&#x27;</span>: <span class="string">&#x27;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#x27;</span>,
-        <span class="string">&#x27;Accept&#x27;</span>: <span class="string">&#x27;*/*&#x27;</span>,
-        <span class="string">&#x27;Cookie&#x27;</span>: <span class="string">&#x27;ll=&quot;108296&quot;; bid=DIZJHJYe40Y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1697503350%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D7mX7_DYj1rvpVbk1-XVpnHlGWhhuOHcRgjFNbC0KoWEMe4-wytQfL4FZvJtRsTxC%26wd%3D%26eqid%3De80b52bb0000c24600000005652dd873%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __yadk_uid=cSeoVvLDVBPux8QedPv8ZhjqjQMyW7Ka; _vwo_uuid_v2=D0271D0AFA2BFE022D7B32A84C9C79BA9|9f33d547e5bc95d46eac63303551a3cb; _pk_id.100001.4cf6=3c8e0eace73a58d7.1697503374.; Hm_lvt_16a14f3002af32bf3a75dfe352478639=1697503401; Hm_lpvt_16a14f3002af32bf3a75dfe352478639=1697503401; __utma=30149280.267631944.1656475391.1656491114.1697503809.3; __utmb=30149280.0.10.1697503809; __utmc=30149280; __utmz=30149280.1697503809.3.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=223695111.902583869.1656491114.1656491114.1697503809.2; __utmb=223695111.0.10.1697503809; __utmc=223695111; __utmz=223695111.1697503809.2.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#x27;</span>
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;,
+        &#39;Accept&#39;: &#39;*/*&#39;,
+        &#39;Cookie&#39;: &#39;ll=&quot;108296&quot;; bid=DIZJHJYe40Y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1697503350%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D7mX7_DYj1rvpVbk1-XVpnHlGWhhuOHcRgjFNbC0KoWEMe4-wytQfL4FZvJtRsTxC%26wd%3D%26eqid%3De80b52bb0000c24600000005652dd873%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __yadk_uid=cSeoVvLDVBPux8QedPv8ZhjqjQMyW7Ka; _vwo_uuid_v2=D0271D0AFA2BFE022D7B32A84C9C79BA9|9f33d547e5bc95d46eac63303551a3cb; _pk_id.100001.4cf6=3c8e0eace73a58d7.1697503374.; Hm_lvt_16a14f3002af32bf3a75dfe352478639=1697503401; Hm_lpvt_16a14f3002af32bf3a75dfe352478639=1697503401; __utma=30149280.267631944.1656475391.1656491114.1697503809.3; __utmb=30149280.0.10.1697503809; __utmc=30149280; __utmz=30149280.1697503809.3.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=223695111.902583869.1656491114.1656491114.1697503809.2; __utmb=223695111.0.10.1697503809; __utmc=223695111; __utmz=223695111.1697503809.2.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#39;
     &#125;
 
-    data = urllib.parse.urlencode(data).encode(<span class="string">&#x27;utf-8&#x27;</span>)
+    data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
     request = urllib.request.Request(url=base_url,data=data,headers=headers)
-    <span class="keyword">return</span> request
+    return request
 
-<span class="keyword">def</span> <span class="title function_">get_content</span>(<span class="params">request</span>):
+def get_content(request):
     response = urllib.request.urlopen(request)
-    content = response.read().decode(<span class="string">&#x27;utf-8&#x27;</span>)
-    <span class="keyword">return</span> content
+    content = response.read().decode(&#39;utf-8&#39;)
+    return content
 
 
-<span class="keyword">def</span> <span class="title function_">download</span>(<span class="params">content,page</span>):
-    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;kfc&#x27;</span>+<span class="built_in">str</span>(page)+<span class="string">&#x27;.json&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> file_object:
+def download(content,page):
+    with open(&#39;kfc&#39;+str(page)+&#39;.json&#39;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as file_object:
         file_object.write(content)
-<span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:
-    start_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入起始页码： &#x27;</span>))
-    end_page = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&#x27;请输入终止页码: &#x27;</span>))
-    <span class="keyword">for</span> page <span class="keyword">in</span> <span class="built_in">range</span>(start_page,end_page+<span class="number">1</span>):
+if __name__ == &#39;__main__&#39;:
+    start_page = int(input(&#39;请输入起始页码： &#39;))
+    end_page = int(input(&#39;请输入终止页码: &#39;))
+    for page in range(start_page,end_page+1):
         request = create_request(page)
         content = get_content(request)
         download(content,page)
 </code></pre>
+
     </div>
     
     
