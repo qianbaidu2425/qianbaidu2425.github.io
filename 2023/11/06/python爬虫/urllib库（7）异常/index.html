@@ -26,8 +26,17 @@
     rel="stylesheet"
     href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github-dark.min.css"
 />
+<link 
+    rel="stylesheet"
+    id="hljs-style-dark"
+    disabled
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github-dark.min.css"
+/>
 <script src="/js/lib/highlight.js"></script>
 
+
+
+<script src="/js/lib/darkmode.js"></script>
 
 
 <script src="/js/lib/preview.js"></script>
@@ -85,6 +94,17 @@
             <span>&ensp;Tags</span>
         </a>
         
+        <a href="/">
+            <i class="fa- fa- fa-fw"></i>
+            <span>&ensp;darkmode</span>
+        </a>
+        
+        
+        <i
+            :class="[theme === 'light' ? 'fa-sun' : 'fa-moon', 'fa-solid', 'fa-fw', 'theme-switcher']"
+            @click="handleThemeSwitch"
+        ></i>
+        
     </nav>
     <nav id="mobile-menu">
         <div class="title" @click="showMenuItems = !showMenuItems">
@@ -138,6 +158,25 @@
                         <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
                     </div>
                 </a>
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa- fa- fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">darkmode</div>
+                    </div>
+                </a>
+                
+                
+                <div class="item theme-switcher" @click="handleThemeSwitch">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i :class="[theme === 'light' ? 'fa-sun' : 'fa-moon', 'fa-solid', 'fa-fw']"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">
+                        Theme: {{ theme === 'light' ? 'Light' : 'Dark' }}
+                    </div>
+                </div>
                 
             </div>
         </transition>
