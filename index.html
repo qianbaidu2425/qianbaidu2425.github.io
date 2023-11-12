@@ -263,6 +263,8 @@
         <div class="content" v-pre>
             
             <p>目前，千百度已经写下了17篇动漫评论了，发布在b站的个人专栏里了：<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/readlist/rl730811?spm_id_from=333.999.0.0" title="千百度的个人专栏">千百度的漫评</a></p>
+<hr>
+<p>这里放几篇写的稍微认真一点的吧，前面写的一些太划水了。<br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv25052873/?spm_id_from=333.999.0.0" title="Relife——一部献给成年人的动画">Relife——一部献给成年人的动画</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv25106379/?spm_id_from=333.999.0.0" title="重启咲良田——用轮回演绎的拯救与成全">重启咲良田——用轮回演绎的拯救与成全</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv25555121/?spm_id_from=333.999.0.0" title="浅谈《来自风平浪静的明天">浅谈《来自风平浪静的明天》</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv26038781/?spm_id_from=333.999.0.0" title="迎面强风吹拂，逆风奔跑前行">“迎面强风吹拂，逆风奔跑前行”</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv27660709/?spm_id_from=333.999.0.0" title="利兹与青鸟——从disjoint到joint">利兹与青鸟——从disjoint到joint</a></p>
 
             
         </div>
@@ -273,6 +275,84 @@
         
     </div>
     <a href="/2023/11/07/%E5%8D%83%E7%99%BE%E5%BA%A6%E7%9A%84%E5%8A%A8%E6%BC%AB%E4%B8%93%E6%A0%8F/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/12/python%E7%88%AC%E8%99%AB/xpath%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/">
+        <h2 class="post-title">xpath的基本使用</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/12
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="xpath的基本语法"><a href="#xpath的基本语法" class="headerlink" title="xpath的基本语法"></a>xpath的基本语法</h2><h3 id="1-路径查询"><a href="#1-路径查询" class="headerlink" title="1.路径查询"></a>1.路径查询</h3><p>&#x2F;&#x2F;：查找所有子节点，不考虑层级关系<br>&#x2F;：找直接子节点</p>
+<h3 id="2-谓词查询"><a href="#2-谓词查询" class="headerlink" title="2.谓词查询"></a>2.谓词查询</h3><p>&#x2F;&#x2F;div[@id]   查找带有某个id的节点<br>&#x2F;&#x2F;div[@id &#x3D; “…”] 查找带有某个id且id名称限定的节点</p>
+<h3 id="3-属性查询"><a href="#3-属性查询" class="headerlink" title="3.属性查询"></a>3.属性查询</h3><p>&#x2F;&#x2F;@class<br><strong>注意这里返回的是class的属性（也就是class后面的那个字符串），无法跟text()连在一起用！！</strong></p>
+<h3 id="4-模糊查询"><a href="#4-模糊查询" class="headerlink" title="4.模糊查询"></a>4.模糊查询</h3><p>&#x2F;&#x2F;div[contains(@id, “…”)] 包含<br>&#x2F;&#x2F;div[starts-with(@id,”…”)] 以某个字符开头的</p>
+<h3 id="5-内容查询"><a href="#5-内容查询" class="headerlink" title="5.内容查询"></a>5.内容查询</h3><p>&#x2F;&#x2F;div&#x2F;…&#x2F;text()</p>
+<h3 id="6-逻辑运算"><a href="#6-逻辑运算" class="headerlink" title="6.逻辑运算"></a>6.逻辑运算</h3><p>&#x2F;&#x2F;div[@id&#x3D;”…” and @class&#x3D;”…”]<br>&#x2F;&#x2F;div[@id&#x3D;”…” or @class&#x3D;”…”]</p>
+<h2 id="xpath的两种解析方式"><a href="#xpath的两种解析方式" class="headerlink" title="xpath的两种解析方式"></a>xpath的两种解析方式</h2><h3 id="第一种方式：解析本地文件"><a href="#第一种方式：解析本地文件" class="headerlink" title="第一种方式：解析本地文件"></a>第一种方式：解析本地文件</h3><pre><code class="html">&lt;body&gt;
+&lt;ul&gt;
+    &lt;li id=&#39;l1&#39; class=&#39;c1&#39;&gt;北京&lt;/li&gt;
+    &lt;li id=&#39;l2&#39;&gt;上海&lt;/li&gt;
+    &lt;li id=&#39;k3&#39;&gt;深圳&lt;/li&gt;
+
+&lt;/ul&gt;
+&lt;ul&gt;
+    &lt;li&gt;厦门&lt;/li&gt;
+    &lt;li&gt;福州&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="python">from lxml import etree
+tree = etree.parse(&quot;xpath的基本使用.html&quot;)#传入文件的名称
+
+#查找ul下面的li
+li_list = tree.xpath(&#39;//body/ul/li&#39;)#这里还有一种写法是：&#39;//body//li&#39;
+
+#查找所有有id属性的li标签
+li_list = tree.xpath(&#39;//body/ul/li[@id]&#39;)
+li_list = tree.xpath(&#39;//body/ul/li[@id]/text()&#39;)#加上一个text可以获取标签中的内容——北京、上海
+
+#查找id为l1的标签
+li_list = tree.xpath(&#39;//body/ul/li[@id=&quot;l1&quot;]/text()&#39;)#注意引号！
+
+#查找到id为l1的li标签的class的属性值
+li_list = tree.xpath(&#39;//body/ul/li[@id=&quot;l1&quot;]/@class&#39;)
+
+#查询id中包含l的li标签
+li_list = tree.xpath(&#39;//body/ul/li[contains(@id,&quot;l&quot;)]&#39;)
+
+#查询id中以l开头的li标签
+li_list = tree.xpath(&#39;//body/ul/li[starts-with(@id,&quot;l&quot;)]&#39;)
+
+#查询id为l1且class为c1的
+li_list = tree.xpath(&#39;//ul/li[@id=&quot;l1&quot;and @class=&quot;c1&quot;] &#39;)
+
+#查询id为l1或id为l2的
+li_list = tree.xpath(&#39;//ul/li[@id=&quot;l1&quot;]/text()| //ul/li[@id=&quot;l2&quot;]/text()&#39;)
+</code></pre>
+<p>注，以上所有的返回的li_list都是一个列表！只有属性查询不能接text(),其他都可以使用text()来显示标签中的内容</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/12/python%E7%88%AC%E8%99%AB/xpath%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="go-post">阅读全文</a>
 </div>
 
 <div class="post">
@@ -650,50 +730,6 @@ print(type(obj))
         
     </div>
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94post%E8%AF%B7%E6%B1%82/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E4%B8%8B%E8%BD%BD/">
-        <h2 class="post-title">urllib库（3）——下载</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/11/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <p>下载需要文件名和url</p>
-<pre><code class="python">import urllib.request
-
-#下载网页
-url_page = &quot;http://www.baidu.com&quot;
-#url代表的是下载的路径，file_name代表表的是文件名
-#urllib.request.urlretrieve(url_page, &#39;baidu.html&#39;)
-
-#下载图片
-url_image = &#39;https://img1.baidu.com/it/u=36041914,4185692496&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=270&amp;h=180&#39;
-urllib.request.urlretrieve(url_image,&#39;孤独摇滚.jpg&#39;)
-
-#下载视频
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E4%B8%8B%E8%BD%BD/" class="go-post">阅读全文</a>
 </div>
 
 
