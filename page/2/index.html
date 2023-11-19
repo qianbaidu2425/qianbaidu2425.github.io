@@ -206,6 +206,69 @@
         
 
 <div class="post">
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94post%E8%AF%B7%E6%B1%82/">
+        <h2 class="post-title">urllib库（4）——post请求</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="关于请求的方式"><a href="#关于请求的方式" class="headerlink" title="关于请求的方式"></a>关于请求的方式</h3><p>不同网页的请求方式不同，请求方式需要在网页打开后台来查询</p>
+<h3 id="post请求的特点"><a href="#post请求的特点" class="headerlink" title="post请求的特点"></a>post请求的特点</h3><p>1、post请求的参数，必须要事先用urlencode编码，urlencode会把字典变成Unicode编码，这时要再用<code>encode(&#39;utf-8)</code>把Unicode码变成byte！<br>2、post请求的参数需要放在一个列表中，在生成request对象的时候，作为data参数传入<br>3、获取到网页的源码后，记得要反序列化后才能阅读。  </p>
+<pre><code class="python">#post请求
+import urllib.request
+import urllib.parse
+import json
+url = &#39;https://fanyi.baidu.com/sug&#39; #在原网页中，可以看出url的请求方式是post
+headers = &#123;
+&#39;Accept&#39;:
+&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#39;,
+&#39;User-Agent&#39;:
+&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;
+&#125;
+
+data=&#123;
+    &#39;kw&#39;:&#39;spider&#39;
+&#125;
+
+
+data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
+
+
+request = urllib.request.Request(url=url,data=data,headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode(&#39;utf-8&#39;)
+
+print(content)
+print(type(content))
+#反序列化，把字符串变成字典
+obj = json.loads(content)
+print(obj)
+print(type(obj))
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%885%EF%BC%89%E2%80%94%E2%80%94post%E8%AF%B7%E6%B1%82/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%883%EF%BC%89%E2%80%94%E2%80%94%E4%B8%8B%E8%BD%BD/">
         <h2 class="post-title">urllib库（3）——下载</h2>
     </a>
