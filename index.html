@@ -278,6 +278,37 @@
 </div>
 
 <div class="post">
+    <a href="/2023/11/23/%E5%8D%81%E6%9C%88%E6%96%B0%E7%95%AA%E8%BF%BD%E7%95%AA%E4%BD%93%E9%AA%8C%E2%80%9411-23-11-27/">
+        <h2 class="post-title">十月新番追番体验—11.23~11.27</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/23
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="16bit的感动-ep08"><a href="#16bit的感动-ep08" class="headerlink" title="16bit的感动 ep08"></a>16bit的感动 ep08</h2><p>这集还是挺有意思的，双重穿越的剧情，而且这一集全篇都贯穿着“想象力”一词，可算是把galgame最核心的东西给表达出来了，而且这个演出一股浓浓的shaft味。期待一下这部原创还能整出什么活。</p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/23/%E5%8D%81%E6%9C%88%E6%96%B0%E7%95%AA%E8%BF%BD%E7%95%AA%E4%BD%93%E9%AA%8C%E2%80%9411-23-11-27/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/11/19/%E5%8D%81%E6%9C%88%E6%96%B0%E7%95%AA%E8%BF%BD%E7%95%AA%E4%BD%93%E9%AA%8C-11-19/">
         <h2 class="post-title">十月新番追番体验11-19-11.20</h2>
     </a>
@@ -649,59 +680,6 @@ if __name__ == &#39;__main__&#39;:
         
     </div>
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%886%EF%BC%89ajax/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%884%EF%BC%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6/">
-        <h2 class="post-title">urllib库（4）请求对象的定制</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/11/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="一个url的组成"><a href="#一个url的组成" class="headerlink" title="一个url的组成"></a>一个url的组成</h3><p><code>示例：https://www.baidu.com/s?wd=%E5%91%A8%E6%9D%B0%E4%BC%A6&amp;sex=%E7%94%B7&amp;location=%E4%B8%AD%E5%9B%BD%E5%8F%B0%E6%B9%BE%E7%9C%81 </code><br>1、协议：http&#x2F;https<br>2、主机：<a target="_blank" rel="noopener" href="http://www.baidu.com/">www.baidu.com</a><br>3、端口号：<br>http：80<br>https：443<br>mysql：3306<br>oracle:1521<br>redis:6379<br>mongodb:27107<br>4、路径：s<br>5、参数：问号之后的数据<br>6、锚点</p>
-<h3 id="http和https协议的区别"><a href="#http和https协议的区别" class="headerlink" title="http和https协议的区别"></a>http和https协议的区别</h3><p>https经过加密，如果直接用urlopen函数打开使用https协议的url，那么获取到的数据就是不完整的</p>
-<h3 id="用户代理"><a href="#用户代理" class="headerlink" title="用户代理"></a>用户代理</h3><p>User-Agent:一个反爬虫，放在一个名为headers的字典中</p>
-<p>headers包含了很多参数，例如Accept,Cookie等，但是最重要的参数还是Cookie!</p>
-<h3 id="请求对象的定制"><a href="#请求对象的定制" class="headerlink" title="请求对象的定制"></a>请求对象的定制</h3><p>函数urlopen的传参URL可以是一个字符串表示的url，也可以是一个request类型的对象  </p>
-<p>把url和headers传入，获得一个request类型的对象，然后再传入urlopen函数中去获得响应   </p>
-<p><strong>特别注意：这里定制request对象必须用关键字传参！因为url和headers中间还有一个data传参，因此不能使用顺序传参！</strong></p>
-<pre><code class="python">import urllib.request
-url = &quot;https://www.baidu.com&quot;
-
-
-headers = &#123;
-&#39;User-Agent&#39;:
-&#39;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/117.0.0.0 Safari/537.36&#39;
-&#125;
-
-
-request = urllib.request.Request(url = url,headers = headers)
-
-response = urllib.request.urlopen(request)
-content = response.read().decode(&quot;utf-8&quot;)
-print(content)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%884%EF%BC%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6/" class="go-post">阅读全文</a>
 </div>
 
 
