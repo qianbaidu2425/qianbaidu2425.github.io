@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="utf-8" />
+    <title>读《桶川跟踪狂杀人事件有感》 | 千百度&#39;s space</title>
+    <meta name="author" content="千百度" />
+    <meta name="description" content="我们所度过的每一个日常，或许就是连续不断发生的奇迹" />
+    <meta name="keywords" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <link rel="icon" href="/images/avatar.jpg" />
+    <link rel="preconnect" href="https://cdn.staticfile.org" />
+<script src="https://cdn.staticfile.org/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.loli.net" />
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin />
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap" />
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://cdn.staticfile.org/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.staticfile.org/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://cdn.staticfile.org/highlight.js/11.9.0/styles/github-dark.min.css"
+/>
+<link 
+    rel="stylesheet"
+    id="hljs-style-dark"
+    disabled
+    href="https://cdn.staticfile.org/highlight.js/11.8.0/styles/github-dark.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/darkmode.js"></script>
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.jpg" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>千百度&#39;S SPACE</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa- fa- fa-fw"></i>
+            <span>&ensp;darkmode</span>
+        </a>
+        
+        
+        <i
+            :class="[theme === 'light' ? 'fa-sun' : 'fa-moon', 'fa-solid', 'fa-fw', 'theme-switcher']"
+            @click="handleThemeSwitch"
+        ></i>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;千百度&#39;S SPACE</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa- fa- fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">darkmode</div>
+                    </div>
+                </a>
+                
+                
+                <div class="item theme-switcher" @click="handleThemeSwitch">
+                    <div style="min-width: 20px; max-width: 50px; width: 10%">
+                        <i :class="[theme === 'light' ? 'fa-sun' : 'fa-moon', 'fa-solid', 'fa-fw']"></i>
+                    </div>
+                    <div style="min-width: 100px; max-width: 150%; width: 20%">
+                        Theme: {{ theme === 'light' ? 'Light' : 'Dark' }}
+                    </div>
+                </div>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>读《桶川跟踪狂杀人事件有感》</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/24
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <p>这几天正好道法课大作业的ddl将近，同学推荐了一本书《桶川跟踪狂杀人事件》，就着这本书把大作业写掉了。</p>
+<h2 id="背景提要"><a href="#背景提要" class="headerlink" title="背景提要"></a>背景提要</h2><p>这是有关一个女孩被人杀害了三次的故事，第一次是凶手，第二次是媒体，第三次是警方。   </p>
+<p>1999年10月26日，年轻女子猪野诗织在日本埼玉县JR桶川站前遭人刺杀。任职于新潮社《FOCUS》周刊的记者清水洁像往常一样展开了对该案的调查。然而，随着调查的深入，清水洁逐渐发现了这起案件背后种种骇人听闻的真相和令人发指的黑幕。经过长达四年的不懈努力，这起案件才逐渐尘埃落定。清水先生将他追踪此案的全过程记录在《桶川跟踪狂杀人案》一书中。  </p>
+<p>世人从来向往“天下大同”的理想社会。桶川一案揭露出的残酷现实，表明建设和谐社会仍道阻且长，需要但笔者认为清水先生的这本著作能为迷茫中的我们指引一些正确的方向。</p>
+<h2 id="社会秩序的维持离不开法治"><a href="#社会秩序的维持离不开法治" class="headerlink" title="社会秩序的维持离不开法治"></a>社会秩序的维持离不开法治</h2><p>猪野诗织第一次是被凶手杀害的。</p>
+<p>诗织第一次遇见小松和人时，小松和人自称他是“从事汽车销售的青年实业家”，但是小松和人实际上经营着非法色情行业，在清水记者不懈的追踪下，他发现小松和人经营的色情按摩店规模相当大。   </p>
+<p>难以想象，在即将迎来二十一新世纪的时候，这些非法产业却在日本的社会上横行霸道。事实上，早在1900年，日本就出台了《淫行禁止法》，并在1951年出台了《淫秽物贩卖等罪》这一部法律。那么，这或许说明，当时的日本池袋地区的治安部门，或许根本就没有将禁止色情产业的法律坚决实行。：</p>
+<p>同时，在当时的日本，并没有相关法律对跟踪骚扰行为做出规定。因此，就算是遇到骚扰以至于生命受到威胁的公民，也无法指望警署对骚扰行为采取措施，书中原话如下[1]：</p>
+<p>“跟踪狂的问题，或许警方也难以判断。实际上，警方收到这类咨询求助的数量相当多。如果被害的一方有过错，反过来遭到警方斥责，或许是活该；但诗织的案例又如何？”</p>
+<p>一个社会缺失了法律，就缺失了评判行为的准绳。正是因为没有相关法律的规定，小松和人才可以肆无忌惮地对诗织展开跟踪和骚扰，正是因为没有相关法律的规定，才使得诗织在向警方求助时，得到的是一句句冰冷的拒绝。2000年5月18日，日本通过了《跟踪骚扰行为规范法》，那些饱受跟踪和骚扰折磨的日本公民终于拥有了捍卫自己权利的途径。</p>
+<p>一个好的社会是有序的，而秩序的维持离不开法律的约束和执法者的尽责。在未来，我们所处的社会还会出现更多游走于“灰色地带”的行为，如果不及时制定相关的法律并坚决贯彻法治的理念，那么这些行为就有可能酿成大错。</p>
+<h2 id="我们需要怎样的媒体环境？"><a href="#我们需要怎样的媒体环境？" class="headerlink" title="我们需要怎样的媒体环境？"></a>我们需要怎样的媒体环境？</h2><p>猪野诗织第二次是被媒体杀害的。</p>
+<p>在本书中，清水先生展现了当时日本媒体传播界的扭曲。在当时的日本，民众对《FOCUS》这样的周刊的印象往往是“三流”，而某些报纸却能被冠以“一流杂志”之名。如此巨大的待遇差距，不是因为它们报道的内容存在深度上的优劣之分，而是因为——周刊不是政府宣传型的“公共媒体”。</p>
+<p>这样的成见带来的危害，在桶川一案中被放大了。办案的搜查员提起诗织一案时，常常这么说——“那是酒家女的三流案子啦。“警方用这样不合实际的话语对媒体进行了诱导，而那些所谓的“一流杂志”只会把政府机关公布的信息照本宣科地报道出来，并把这样的形容词放大后，插在标题里，放在版面上。如此一来，诗织的形象变成了“酒店小姐”、“迷恋名牌的人”活在了许多大众心中，但她只是一个普通的女生啊……</p>
+<p>在如今的中国社会，我们也应该避免这种情况的出现。媒体的高低应该根据其发表的内容的质量来评判，国家应当在全社会进行这种价值导向的引领。同时，新闻工作者不应该随波逐流，应该要对信息来源采取客观的态度进行审视，敢于质疑，不能因为是“官方的”就不加思考地大肆报道。</p>
+<p>同时，笔者认为，如今的媒体不应做“标题党“。显眼的标题会让读者先入为主，错误的信息可能会存在于读者的潜意识里，潜移默化地改变大众舆论的风向。同时，笔者也认为，国家应当进一步完善审查体制，筛查出那些准确而客观的报道，不让错误的信息流入社会。</p>
+<h2 id="国家机关工作人员的不作为是可怕的"><a href="#国家机关工作人员的不作为是可怕的" class="headerlink" title="国家机关工作人员的不作为是可怕的"></a>国家机关工作人员的不作为是可怕的</h2><p>猪野诗织第三次诗被警方杀害的。</p>
+<p>在本书中，最令人感到愤慨的，或许就是埼玉县上尾警署的黑暗。他们怠政，只是因为“不愿意引起麻烦”就对诗织的求助报以冷漠的态度，随意篡改笔录；他们拥有数百人组成的专案组，侦察效率却不如周刊的几位记者。在办案的过程中，他们始终绕开最重要的环节——小松和人，直到最后他们都在逼迫小松和人的哥哥小松武史承认自己是主谋，而小松和人直到最后都仅仅止于被以名誉损毁的罪嫌通缉。最可恨的是——他们把死者发生的不幸当作儿戏。他们随意扣押死者的遗物，在死者父母接到死讯之后还蛮横地要求他们配合填写各类文件，甚至还将死者生前写下的日记里的某些片段拿来咬文嚼字，拿来反击死者父母的质疑。在办案的发布会现场，有警察甚至还带着笑容，实在令人作呕。</p>
+<p>上尾警署的警员们，不但没有拯救诗织，放任她的生命被凶手夺取，还在诗织去世后不断践踏着她的人格。<br>书中描写的上尉警署，是日本当时无数不作为的警署中的一个缩影，或许也是现在中国社会中许多不作为的地方政府机关的一个缩影。这些不作为的官员，在他们的恶行被公之于众之前，他们仍然在日复一日地懒政、怠政；难以想象多少人民的权益因此而收到损害。</p>
+<p>笔者认为，我们必须进一步加大反腐的力度。国家监察机关必须深入基层，推动反腐工作的展开。同时，要给民众提供更多的反馈渠道，让更多不作为、不担责的行为被曝光出来。在全社会营造廉洁而公正的行政氛围。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>笔者认为，我们应该感谢清水洁先生，是他让这起拥有里程碑式意义的案件的真相能够被世人所看见。或许，我们应该感谢所有怀揣良知、正义与勇气，为了真相而奋不顾身的人们。作为后人，我们能从这本书中获得灵感，让清水先生所做出的努力化为我们建设和谐社会的良策。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1].	《桶川跟踪狂杀人事件》 清水洁著 四川人民出版社</p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2022 - 2023 千百度&#39;s space
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;千百度
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>

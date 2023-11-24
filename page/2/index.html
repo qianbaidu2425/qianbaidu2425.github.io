@@ -206,6 +206,78 @@
         
 
 <div class="post">
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%886%EF%BC%89ajax/">
+        <h2 class="post-title">urllib库（6）ajax</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="什么是ajax？"><a href="#什么是ajax？" class="headerlink" title="什么是ajax？"></a>什么是ajax？</h3><p>含有多个多个页面时，常有ajax请求，ajax请求也分为ajax的post请求和ajax的get请求</p>
+<h3 id="如何判断运用了ajax请求？"><a href="#如何判断运用了ajax请求？" class="headerlink" title="如何判断运用了ajax请求？"></a>如何判断运用了ajax请求？</h3><p>当headers中出现：X-Requested-With: XMLHttpRequest时，说明就是一个ajax请求</p>
+<p>代码示例：获得豆瓣电影前20页的数据</p>
+<pre><code class="python">import urllib.request
+import urllib.parse
+url = &#39;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#39;
+
+def create_request(page):
+    base_url = &#39;http://www.kfc.com.cn/kfccda/ashx/GetStoreList.ashx?op=cname&#39;
+    data = &#123;
+        &#39;cname&#39;: &#39;上海&#39;,
+        &#39;pid&#39;:&#39;&#39;,
+        &#39;pageIndex&#39;: page,
+        &#39;pageSize&#39;: 10
+    &#125;
+    headers = &#123;
+        &#39;User-Agent&#39;: &#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;,
+        &#39;Accept&#39;: &#39;*/*&#39;,
+        &#39;Cookie&#39;: &#39;ll=&quot;108296&quot;; bid=DIZJHJYe40Y; _pk_ref.100001.4cf6=%5B%22%22%2C%22%22%2C1697503350%2C%22https%3A%2F%2Fwww.baidu.com%2Flink%3Furl%3D7mX7_DYj1rvpVbk1-XVpnHlGWhhuOHcRgjFNbC0KoWEMe4-wytQfL4FZvJtRsTxC%26wd%3D%26eqid%3De80b52bb0000c24600000005652dd873%22%5D; _pk_ses.100001.4cf6=1; ap_v=0,6.0; __yadk_uid=cSeoVvLDVBPux8QedPv8ZhjqjQMyW7Ka; _vwo_uuid_v2=D0271D0AFA2BFE022D7B32A84C9C79BA9|9f33d547e5bc95d46eac63303551a3cb; _pk_id.100001.4cf6=3c8e0eace73a58d7.1697503374.; Hm_lvt_16a14f3002af32bf3a75dfe352478639=1697503401; Hm_lpvt_16a14f3002af32bf3a75dfe352478639=1697503401; __utma=30149280.267631944.1656475391.1656491114.1697503809.3; __utmb=30149280.0.10.1697503809; __utmc=30149280; __utmz=30149280.1697503809.3.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none); __utma=223695111.902583869.1656491114.1656491114.1697503809.2; __utmb=223695111.0.10.1697503809; __utmc=223695111; __utmz=223695111.1697503809.2.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)&#39;
+    &#125;
+
+    data = urllib.parse.urlencode(data).encode(&#39;utf-8&#39;)
+    request = urllib.request.Request(url=base_url,data=data,headers=headers)
+    return request
+
+def get_content(request):
+    response = urllib.request.urlopen(request)
+    content = response.read().decode(&#39;utf-8&#39;)
+    return content
+
+
+def download(content,page):
+    with open(&#39;kfc&#39;+str(page)+&#39;.json&#39;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as file_object:
+        file_object.write(content)
+if __name__ == &#39;__main__&#39;:
+    start_page = int(input(&#39;请输入起始页码： &#39;))
+    end_page = int(input(&#39;请输入终止页码: &#39;))
+    for page in range(start_page,end_page+1):
+        request = create_request(page)
+        content = get_content(request)
+        download(content,page)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%886%EF%BC%89ajax/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%884%EF%BC%89%E8%AF%B7%E6%B1%82%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%AE%9A%E5%88%B6/">
         <h2 class="post-title">urllib库（4）请求对象的定制</h2>
     </a>
