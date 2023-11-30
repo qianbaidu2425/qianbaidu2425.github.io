@@ -278,6 +278,70 @@
 </div>
 
 <div class="post">
+    <a href="/2023/11/30/%E7%94%A8python%E6%A8%A1%E6%8B%9F%E9%AA%8C%E8%AF%81%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/">
+        <h2 class="post-title">用python模拟验证伯努利大数定律</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/30
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>大二上概统课的大作业里，我挑了验证伯努利大数定律的那一个。</p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><pre><code class="python">#该程序用于验证伯努利大数定律
+import random
+import matplotlib.pyplot as plt
+#假设在每次独立实验中，事件发生的概率为0.5
+p = input(&quot;Please type in the probability of the event&#39;A&#39;: &quot;)
+p = float(p)
+#创建空列表用来存放独立重复实验
+experiment = []
+
+#创建好散点图
+plt.scatter([],[])
+plt.title(&#39;Frequency-Exp_times&#39;)
+plt.xlabel(&#39;Exp_times&#39;)
+plt.ylabel(&#39;Frequency&#39;)
+
+#假设实验的重复次数为n,模拟n次独立重复实验
+for n in range (1,10001):
+    print(n)
+    experiment = []
+    for i in range (1,n+1):
+        num = random.uniform(0,1)
+        if num &lt;= p:
+            value = 1
+        if num &gt; p:
+            value = 0
+        experiment.append(value)
+    nA = sum(experiment)
+    plt.scatter(n,nA/n,color=&#39;black&#39;,s=2)
+    
+#画出散点图
+plt.show()
+</code></pre>
+<h2 id="验证效果"><a href="#验证效果" class="headerlink" title="验证效果"></a>验证效果</h2><p>p&#x3D;0.25<br><img src="/2023/11/30/%E7%94%A8python%E6%A8%A1%E6%8B%9F%E9%AA%8C%E8%AF%81%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/p=0.25.png" alt="Alt text"><br>p&#x3D;0.5<br><img src="/2023/11/30/%E7%94%A8python%E6%A8%A1%E6%8B%9F%E9%AA%8C%E8%AF%81%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/p=0.5.png" alt="Alt text"><br>p&#x3D;0.75<br><img src="/2023/11/30/%E7%94%A8python%E6%A8%A1%E6%8B%9F%E9%AA%8C%E8%AF%81%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/p=0.75.png" alt="Alt text"></p>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/30/%E7%94%A8python%E6%A8%A1%E6%8B%9F%E9%AA%8C%E8%AF%81%E4%BC%AF%E5%8A%AA%E5%88%A9%E5%A4%A7%E6%95%B0%E5%AE%9A%E5%BE%8B/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
     <a href="/2023/11/24/%E8%AF%BB%E3%80%8A%E6%A1%B6%E5%B7%9D%E8%B7%9F%E8%B8%AA%E7%8B%82%E6%9D%80%E4%BA%BA%E4%BA%8B%E4%BB%B6%E6%9C%89%E6%84%9F%E3%80%8B/">
         <h2 class="post-title">读《桶川跟踪狂杀人事件有感》</h2>
     </a>
@@ -616,64 +680,6 @@ proxies = random.choice(proxies_pool)
         
     </div>
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%889%EF%BC%89%E4%BB%A3%E7%90%86%E5%92%8C%E4%BB%A3%E7%90%86%E6%B1%A0/" class="go-post">阅读全文</a>
-</div>
-
-<div class="post">
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%887%EF%BC%89%E5%BC%82%E5%B8%B8/">
-        <h2 class="post-title">urllib库（7）异常</h2>
-    </a>
-    <div class="category-and-date">
-        
-        <span class="date">
-            <span class="icon">
-                <i class="fa-solid fa-calendar fa-fw"></i>
-            </span>
-            2023/11/6
-        </span>
-        
-        
-    </div>
-    <div class="description">
-        <div class="content" v-pre>
-            
-            <h3 id="常出现的两种异常："><a href="#常出现的两种异常：" class="headerlink" title="常出现的两种异常："></a>常出现的两种异常：</h3><p>1、HTTPError：出现在url种某个字符出现问题的时候<br>2、URLError:出现在这个url不存在的时候<br>其中：HTTPError是URLError的一个子类</p>
-<p>示例：</p>
-<pre><code class="python">import urllib.request
-import urllib.error
-url1 = &#39;https://blog.csdn.net/boysoft2002/article/details/132520234&#39;
-url2 = &#39;https://blog.csdn.net/boy__soft2002/article/details/132520234&#39;#HTTPError
-url3 = &#39;http://www.yangkeyu.com&#39;#URLError
-
-
-
-headers = &#123;
-&#39;Accept&#39;:
-&#39;text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7&#39;,
-&#39;User-Agent&#39;:
-&#39;Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Mobile Safari/537.36 Edg/118.0.2088.46&#39;
-&#125;
-
-
-try:
-    request = urllib.request.Request(url=url3, headers=headers)
-    response = urllib.request.urlopen(request)
-    content = response.read().decode(&#39;utf-8&#39;)
-    print(content)
-except urllib.error.HTTPError:
-    print(&#39;出现http错误&#39;)
-except urllib.error.URLError:
-    print(&quot;出现了url错误&quot;)
-</code></pre>
-
-            
-        </div>
-    </div>
-    <div class="post-tags">
-        
-        
-        
-    </div>
-    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%887%EF%BC%89%E5%BC%82%E5%B8%B8/" class="go-post">阅读全文</a>
 </div>
 
 
