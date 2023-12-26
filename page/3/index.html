@@ -35,6 +35,11 @@
 <script src="/js/lib/highlight.js"></script>
 
 
+<script src="https://cdn.staticfile.org/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdn.staticfile.org/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<link rel="stylesheet" href="https://cdn.staticfile.org/KaTeX/0.16.9/katex.min.css" />
+<script src="/js/lib/math.js"></script>
+
 
 <script src="/js/lib/darkmode.js"></script>
 
@@ -204,6 +209,161 @@
 <div id="home-posts-wrap" true ref="homePostsWrap">
     <div id="home-posts">
         
+
+<div class="post">
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/">
+        <h2 class="post-title">urllib库（1）——基本用法</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+        <span class="special">
+            <i class="fa-solid fa-grip-vertical fa-fw"></i>
+        </span>
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h2 id="使用urllib获取网页数据的基本流程"><a href="#使用urllib获取网页数据的基本流程" class="headerlink" title="使用urllib获取网页数据的基本流程"></a>使用urllib获取网页数据的基本流程</h2><p>1、定义一个url<br>2、模拟浏览器向服务器发送请求<br>3、获取相应页面的源码<br>4、把源码解码</p>
+<pre><code class="python">#使用urllib来获取百度页面的原数据
+
+import urllib.request
+#1、定义一个url
+url = &#39;http://www.baidu.com&#39;
+#2、模拟浏览器向服务器发送请求
+response = urllib.request.urlopen(url)
+#3、获取相应中的页面的源码
+#read返回的是字节形式的二进制数据
+#将二进制数据转换为字符串：解码
+#解码：decode(&#39;编码的格式&#39;)
+content = response.read().decode(&#39;utf-8&#39;)
+
+print(content)
+</code></pre>
+<h2 id="urllib的一个类型和6种方法"><a href="#urllib的一个类型和6种方法" class="headerlink" title="urllib的一个类型和6种方法"></a>urllib的一个类型和6种方法</h2><h3 id="一个类型"><a href="#一个类型" class="headerlink" title="一个类型"></a>一个类型</h3><p>response是HTTPResponse的类型</p>
+<h3 id="6种方法"><a href="#6种方法" class="headerlink" title="6种方法"></a>6种方法</h3><p>1、一个一个字节来读<br>2、n个n个字节来读<br>3、只读一行<br>4、一行一行来读直到读完<br>5、返回url地址<br>6、返回网页的状态  </p>
+<p>附加方法：检查response是否有逻辑错误</p>
+<p>实例代码：</p>
+<pre><code class="python">import urllib.request
+url = &quot;http://www.baidu.com&quot;
+response = urllib.request.urlopen(url)
+#一个类型和六个方法
+#print(type(response))
+#response是HTTPResponse的类型
+
+#按照一个一个字节来读
+&quot;&quot;&quot;content = response.read()
+print(content)&quot;&quot;&quot;
+
+#read(n)表示返回n个字节
+&quot;&quot;&quot;content = response.read(5)
+print(content)&quot;&quot;&quot;
+
+#读取一行
+&quot;&quot;&quot;content = response.readline()
+print(content)&quot;&quot;&quot;
+
+#一行一行来读直到读完
+&quot;&quot;&quot;content = response.readlines()
+print(content)&quot;&quot;&quot;
+
+#返回状态码 如果是200 则说明逻辑没有错误
+#print(response.getcode())
+
+#返回url地址
+#print(response.geturl())
+
+#获取的是一些状态信息
+print(response.getheaders())
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/urllib%E5%BA%93%EF%BC%881%EF%BC%89%E2%80%94%E2%80%94%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95/" class="go-post">阅读全文</a>
+</div>
+
+<div class="post">
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+        <h2 class="post-title">序列化和反序列化</h2>
+    </a>
+    <div class="category-and-date">
+        
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2023/11/6
+        </span>
+        
+        
+    </div>
+    <div class="description">
+        <div class="content" v-pre>
+            
+            <h3 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h3><p>把列表、字典等类型的对象转换为字符串类型之后才可以写进txt文件中</p>
+<p>有dumps和dump两种用法：</p>
+<pre><code class="python">import json
+#dumps
+&quot;&quot;&quot;
+with open(&#39;example.txt&#39;,&#39;w&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;]
+    b = json.dumps(a)
+    #此时b的类型是str
+    object.write(b)
+&quot;&quot;&quot;
+#dump
+#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里
+
+with open(&quot;example.txt&quot;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;,&#39;yes&#39;]
+    json.dump(a, object)
+    print(object)
+
+</code></pre>
+<h3 id="反序列化"><a href="#反序列化" class="headerlink" title="反序列化"></a>反序列化</h3><p>把txt文件中的str字符串还原成python中的各类对象</p>
+<p>有load和loads两种用法   </p>
+<pre><code class="python">import json
+#dumps
+&quot;&quot;&quot;
+with open(&#39;example.txt&#39;,&#39;w&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;]
+    b = json.dumps(a)
+    #此时b的类型是str
+    object.write(b)
+&quot;&quot;&quot;
+#dump
+#在将字符串转换为对象的同时，指定一个文件的对象，然后把转换后的字符串写进这个文件里
+
+with open(&quot;example.txt&quot;,&#39;w&#39;,encoding=&#39;utf-8&#39;) as object:
+    a = [&#39;yes&#39;, &#39;no&#39;,&#39;yes&#39;]
+    json.dump(a, object)
+    print(object)
+</code></pre>
+
+            
+        </div>
+    </div>
+    <div class="post-tags">
+        
+        
+        
+    </div>
+    <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="go-post">阅读全文</a>
+</div>
 
 <div class="post">
     <a href="/2023/11/06/python%E7%88%AC%E8%99%AB/%E9%A1%B5%E9%9D%A2%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%93%E6%9E%84/">
